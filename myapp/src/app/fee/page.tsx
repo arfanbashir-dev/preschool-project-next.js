@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import FeeImg from '../../../SchoolPics/18.jpg'
-import MessImg from '../../../SchoolPics/15.jpg'
-import InfoImg from '../../../ShoolPics/19.jpg'
+import FeeImg from '../../../SchoolPics/eighteen.jpg'
+import MessImg from '../../../SchoolPics/fifteen.jpg'
+import InfoImg from '../../../ShoolPics/ninteen.jpg'
 
 
 
