@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Img1 from '../../public/school pics/1.jpg';
+import Img1 from '../../public/SchoolPics/1.jpg';
 
 export default function HomeKeyFeaturePage(){
     return(
@@ -19,9 +19,7 @@ export default function HomeKeyFeaturePage(){
 
                 </div>
                 <div className="container1">
-                    {/* <h1 className="ml-[30%]">Discipline</h1> */}
-                    {/* <br /> */}
-                    {/* <p className="text-center">We make their life disciplined and directional</p> */}
+                    
                     <Image src={Img1} alt='about-image'  className="h-64 rounded-lg" />
                 </div>
                 <div className="container1">
