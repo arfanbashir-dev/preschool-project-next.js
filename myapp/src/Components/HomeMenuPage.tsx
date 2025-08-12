@@ -1,8 +1,8 @@
 import Image from "next/image"
-import Img6 from '../../public/school pics/6.jpg'
-import Img7 from '../../public/school pics/7.jpg'
-import Img12 from '../../public/school pics/12.jpg'
-import Img13 from '../../public/school pics/13.jpg'
+import Img6 from '../../public/SchoolPics/6.jpg'
+import Img7 from '../../public/SchoolPics/7.jpg'
+import Img12 from '../../public/SchoolPics/12.jpg'
+import Img13 from '../../public/SchoolPics/13.jpg'
 
 export default function HomeMenuPage(){
     return(
