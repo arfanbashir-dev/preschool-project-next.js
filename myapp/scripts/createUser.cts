@@ -13,7 +13,7 @@ async function createUser() {
   await connectDB();
   
   const name = 'admin';
-  const email = 'admin@example.com';
+  const email = 'admin@gmail.com';
   const password = 'admin123';
   const role = 'admin';
 
