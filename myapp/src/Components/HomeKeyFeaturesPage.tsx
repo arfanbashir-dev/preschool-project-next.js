@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Img1 from '../../public/SchoolPics/1.jpg';
+import Img1 from '../../public/SchoolPics/one.jpg';
 
 export default function HomeKeyFeaturePage(){
     return(
