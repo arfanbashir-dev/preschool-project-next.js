@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function EditAdmissionRecord({ params }: { params: { id: string } }) {
   const searchParams = useSearchParams();
@@ -29,7 +30,8 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
     job_degination: '',
   });
   
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -51,7 +53,7 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
         
         setForm(data.student);
         if (data.student.myimg) {
-          setImagePreview(data.student.myimg);
+          setPreview(data.student.myimg);
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
@@ -71,7 +73,7 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) {
       const file = e.target.files[0];
-      setImagePreview(URL.createObjectURL(file));
+      setPreview(URL.createObjectURL(file));
       
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -136,11 +138,12 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
         {/* Image Upload */}
         <div className="flex items-start gap-6">
           <div className="border-2 border-gray-300 w-40 h-40 flex items-center justify-center bg-gray-100 rounded overflow-hidden">
-            {imagePreview ? (
-              <img  src={imagePreview}   alt="Student"   className="w-full h-full object-cover"
+            {preview && (
+              <Image  src={preview}   alt="Preview"  width={100}  height={100}    className="rounded-full object-cover"
+              unoptimized
               />
-              ) : ( <span className="text-gray-500">No image</span> )
-            }
+              )}
+
           </div>
           <div className="flex-1">
             <label className="block mb-2 font-medium">Student Photo</label>
@@ -250,7 +253,7 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
         <h2 className="text-xl font-bold mt-8 mb-4">Family Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block mb-2 font-medium">Father's Name*</label>
+            <label className="block mb-2 font-medium">Father Name*</label>
             <input  type="text"  name="fathername"  value={form.fathername}
               onChange={handleChange} required
               className="w-full p-2 border rounded"
@@ -259,7 +262,7 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
           </div>
           
           <div>
-            <label className="block mb-2 font-medium">Mother's Name*</label>
+            <label className="block mb-2 font-medium">Mother Name*</label>
             <input  type="text"  name="mothername"  value={form.mothername}
               onChange={handleChange} required
               className="w-full p-2 border rounded"
@@ -268,7 +271,7 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
           </div>
           
           <div>
-            <label className="block mb-2 font-medium">Father's Contact*</label>
+            <label className="block mb-2 font-medium">Father Contact*</label>
             <input type="text"   name="father_contact"   value={form.father_contact}
               onChange={handleChange} required
               className="w-full p-2 border rounded"
@@ -277,7 +280,7 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
           </div>
           
           <div>
-            <label className="block mb-2 font-medium">Mother's Contact*</label>
+            <label className="block mb-2 font-medium">Mother Contact*</label>
             <input type="text"  name="mother_contact"  value={form.mother_contact}
               onChange={handleChange} required
               className="w-full p-2 border rounded"
@@ -286,7 +289,7 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
           </div>
           
           <div>
-            <label className="block mb-2 font-medium">Father's NIC Number*</label>
+            <label className="block mb-2 font-medium">Father NIC Number*</label>
             <input type="text"  name="father_nicn" value={form.father_nicn}
               onChange={handleChange}  required
               className="w-full p-2 border rounded"
@@ -295,7 +298,7 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
           </div>
           
           <div>
-            <label className="block mb-2 font-medium">Mother's NIC Number*</label>
+            <label className="block mb-2 font-medium">Mother NIC Number*</label>
             <input type="text"   name="mother_nicn"   value={form.mother_nicn}
               onChange={handleChange} required
               className="w-full p-2 border rounded"
@@ -304,7 +307,7 @@ export default function EditAdmissionRecord({ params }: { params: { id: string }
           </div>
           
           <div>
-            <label className="block mb-2 font-medium">Father's Occupation*</label>
+            <label className="block mb-2 font-medium">Father Occupation*</label>
             <input type="text"  name="father_occupation"  value={form.father_occupation}
               onChange={handleChange} required
               className="w-full p-2 border rounded"

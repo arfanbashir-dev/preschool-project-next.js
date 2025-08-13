@@ -11,12 +11,25 @@ const gradeOptions = [
   { value: 'prep', label: 'Prep' }
 ];
 
+type Student = {
+  _id: string;
+  firstname: string;
+  lastname: string;
+  date_of_birth: string;
+  gender: string;
+  fathername: string;
+  myimg?: string;
+};
+
+
+
+
 export default function AdmissionsPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { data: session, status } = useSession();
 
-  const [students, setStudents] = useState<any[]>([]);
+  const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({ totalPages: 1, currentPage: 1 });
 
