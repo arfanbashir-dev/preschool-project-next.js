@@ -20,7 +20,8 @@ export default function AdmissionsPage() {
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({ totalPages: 1, currentPage: 1 });
 
-  const selectedGrade = searchParams.get('grade') || gradeOptions[0].value;
+  // const selectedGrade = searchParams.get('grade') || gradeOptions[0].value;
+  const selectedGrade = searchParams?.get('grade') ?? gradeOptions[0].value;
   const currentPage = parseInt(searchParams.get('page') || '1');
 
   useEffect(() => {
@@ -95,7 +96,7 @@ export default function AdmissionsPage() {
               <td className="table-cell-style">
                 {student.myimg ? (
                   <div className="flex justify-center">
-                    <Image src={student.myimg} width={60} height={64}
+                    <Image  src={String(student.myimg)} width={60} height={64}
                       className="rounded-lg object-cover w-16 h-16"
                       alt={`${student.firstname} ${student.lastname}`}
                       unoptimized

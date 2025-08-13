@@ -1,59 +1,42 @@
 // ✅ Must have at least one import to be treated as a module
-import NextAuth from "next-auth";
-import { DefaultSession, DefaultUser } from "next-auth";
+import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
+import { JWT as DefaultJWT } from "next-auth/jwt";
 
-// ✅ Extend both Session and User
 declare module "next-auth" {
   interface Session {
-    user: {
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-      role?: string | null;
+   user: {   name?: string | null;  email?: string | null;  image?: string | null; role?: string | null;
     } & DefaultSession["user"];
   }
 
-  interface User extends DefaultUser {
-    role?: string | null;
-  }
+  interface User extends DefaultUser {  role?: string | null;  }
 }
 
+declare module "next-auth/jwt" { interface JWT extends DefaultJWT { role?: string | null; }}
 
 
 
 
-// src/types/next-auth.d.ts
-// import NextAuth from "next-auth"; // 👈 REQUIRED for module augmentation
 
-// declare module "next-auth" {
-//   interface Session {
-//     user: {
-//       name?: string | null;
-//       email?: string | null;
-//       image?: string | null;
-//       role?: string | null; // ✅ this fixes session.user.role
-//     };
-//   }
-
-//   interface User {
-//     role?: string | null;
-//   }
-// }
-
-
+// // ✅ Must have at least one import to be treated as a module
 // import NextAuth from "next-auth";
+// import { DefaultSession, DefaultUser } from "next-auth";
 
+// // ✅ Extend both Session and User
 // declare module "next-auth" {
 //   interface Session {
 //     user: {
 //       name?: string | null;
 //       email?: string | null;
 //       image?: string | null;
-//       role?: string | null;  // your custom field
-//     };
+//       role?: string | null;
+//     } & DefaultSession["user"];
 //   }
 
-//   interface User {
+//   interface User extends DefaultUser {
 //     role?: string | null;
 //   }
 // }
+
+
+
+
