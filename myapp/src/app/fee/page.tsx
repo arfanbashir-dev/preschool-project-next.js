@@ -39,7 +39,7 @@ export default function AdmissionFeeFunc(){
 
                     <h1 className='text-blue-950 font-bold'><u>Little Genius TechSchool Fee Schedule</u> </h1>
 
-                    <p>We offer a straightforward and transparent fee structure, which includes your child's daily lunch, enabling families to plan ahead.</p>
+                    <p>We offer a straightforward and transparent fee structure, which includes your child daily lunch, enabling families to plan ahead.</p>
                     <p>We are a family school for boys and girls, offering a sibling discount of 5% on the second, and subsequent children’s fees.</p>
                     <p>We offer an Early Years’ Funding Discount on all pupils in our Preschool class from the start of the term after the one in which they turn 3.</p>
 
@@ -52,9 +52,9 @@ export default function AdmissionFeeFunc(){
                     
                     <ul className='flex-column gap-1 items-start'>
 
-                        <Link href= '/abc'>Early Year's Funding</Link>
+                        <Link href= '/abc'>Early Year Funding</Link>
                         <Link href= '/abc'>Termly Fees</Link>
-                        <Link href= '/abc'>What's Included?</Link>
+                        <Link href= '/abc'>What is Included?</Link>
                         <Link href= '#paymentSection'>Payments</Link>
 
                     </ul>
@@ -65,7 +65,7 @@ export default function AdmissionFeeFunc(){
 
             <div className=' p-20 bg-dark'>
 
-                <Link href= '/abc'>Early Year's Funding</Link>
+                <Link href= '/abc'>Early Year Funding</Link>
                 
                 <div className='flex-between p-10  '>
 
@@ -77,7 +77,7 @@ export default function AdmissionFeeFunc(){
                             We are delighted to announce that Early Years’ funding is now available to all 3 and 4 year olds in the Preschool at Hendon Prep*
                         </p>
                         <p>
-                            This government funding, often referred to as ’15 hours free hours funding', is available to every child from the term after they turn 3 until the end of their final term in Preschool. In an independent school setting this funding equates to an average saving of approximately £900 per term for parents.
+                            This government funding, often referred to as ’15 hours free hours funding, is available to every child from the term after they turn 3 until the end of their final term in Preschool. In an independent school setting this funding equates to an average saving of approximately £900 per term for parents.
                         </p>
                         <p>
                             The school applies for this grant on behalf of families and fees’ invoices will be adapted to show this reduction.
@@ -187,7 +187,7 @@ export default function AdmissionFeeFunc(){
                 <div className=' w-[500px] h-[400px]  shadow-xl bg-dark rounded-lg'>                        
                         
 
-                    <h1 className='bg-medium rounded-t-lg '>What's included?</h1>
+                    <h1 className='bg-medium rounded-t-lg '>What is included?</h1>
                     
                     <ul className='flex-column gap-3 py-5 '>
 
