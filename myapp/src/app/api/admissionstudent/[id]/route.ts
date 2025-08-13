@@ -1,55 +1,64 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
 import getAdmissionModel from '@/model/admissionModel';
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
   try {
-    const grade = request.nextUrl.searchParams.get('grade');
-    if (!grade) return NextResponse.json({ success: false, error: 'Grade required' }, { status: 400 });
+    const { id } = context.params;
+    const grade = req.nextUrl.searchParams.get('grade');
+
+    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
 
     await connectDB();
-    const AdmissionModel = getAdmissionModel(grade);
-    const student = await AdmissionModel.findById(params.id).lean();
+    const Admission = getAdmissionModel(grade);
+    const student = await Admission.findById(id).lean();
+
     if (!student) return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
 
     return NextResponse.json({ success: true, data: student });
   } catch (err) {
-    console.error(err);
+    console.error('GET Error:', err);
     return NextResponse.json({ success: false, error: 'Failed to fetch student' }, { status: 500 });
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: { params: { id: string } }) {
   try {
-    const body = await request.json();
-    const { grade, ...updateData } = body;
-    if (!grade) return NextResponse.json({ success: false, error: 'Grade required' }, { status: 400 });
+    const { id } = context.params;
+    const body = await req.json();
+    const grade = body.grade || req.nextUrl.searchParams.get('grade');
+
+    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
 
     await connectDB();
-    const AdmissionModel = getAdmissionModel(grade);
-    const updatedStudent = await AdmissionModel.findByIdAndUpdate(params.id, updateData, { new: true, runValidators: true }).lean();
-    if (!updatedStudent) return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
+    const Admission = getAdmissionModel(grade);
+    const updated = await Admission.findByIdAndUpdate(id, body, { new: true, runValidators: true }).lean();
 
-    return NextResponse.json({ success: true, data: updatedStudent });
+    if (!updated) return NextResponse.json({ success: false, error: 'Update failed' }, { status: 404 });
+
+    return NextResponse.json({ success: true, data: updated });
   } catch (err) {
-    console.error(err);
+    console.error('PUT Error:', err);
     return NextResponse.json({ success: false, error: 'Failed to update student' }, { status: 500 });
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
   try {
-    const grade = request.nextUrl.searchParams.get('grade');
-    if (!grade) return NextResponse.json({ success: false, error: 'Grade required' }, { status: 400 });
+    const { id } = context.params;
+    const grade = req.nextUrl.searchParams.get('grade');
+
+    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
 
     await connectDB();
-    const AdmissionModel = getAdmissionModel(grade);
-    const deletedStudent = await AdmissionModel.findByIdAndDelete(params.id).lean();
-    if (!deletedStudent) return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
+    const Admission = getAdmissionModel(grade);
+    const deleted = await Admission.findByIdAndDelete(id).lean();
+
+    if (!deleted) return NextResponse.json({ success: false, error: 'Delete failed' }, { status: 404 });
 
     return NextResponse.json({ success: true, message: 'Student deleted successfully' });
   } catch (err) {
-    console.error(err);
+    console.error('DELETE Error:', err);
     return NextResponse.json({ success: false, error: 'Failed to delete student' }, { status: 500 });
   }
 }

@@ -1,62 +1,58 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
 import getAdmissionModel from '@/model/admissionModel';
 
-// GET all students by grade
-export async function GET(request: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
-    const grade = request.nextUrl.searchParams.get('grade');
-    const page = Math.max(1, parseInt(request.nextUrl.searchParams.get('page') || '1', 10));
-    const limit = Math.max(1, parseInt(request.nextUrl.searchParams.get('limit') || '20', 10));
+    const { searchParams } = new URL(req.url);
+    const grade = searchParams.get('grade');
+    const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
+    const limit = Math.max(1, parseInt(searchParams.get('limit') || '20', 10));
 
-    if (!grade) {
-      return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
-    }
+    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
 
     await connectDB();
-    const AdmissionModel = getAdmissionModel(grade);
+    const Admission = getAdmissionModel(grade);
 
-    const [students, totalStudents] = await Promise.all([
-      AdmissionModel.find({})
+    const [students, total] = await Promise.all([
+      Admission.find({})
         .skip((page - 1) * limit)
         .limit(limit)
         .lean(),
-      AdmissionModel.countDocuments()
+      Admission.countDocuments()
     ]);
 
     return NextResponse.json({
       success: true,
       data: students,
       pagination: {
-        totalStudents,
-        totalPages: Math.ceil(totalStudents / limit),
+        total,
+        totalPages: Math.ceil(total / limit),
         currentPage: page,
         limit
       }
     });
   } catch (err) {
-    console.error('❌ GET Error:', err);
+    console.error('GET Error:', err);
     return NextResponse.json({ success: false, error: 'Failed to fetch students' }, { status: 500 });
   }
 }
 
-// POST - create new student
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const body = await request.json();
-    const { grade, ...studentData } = body;
+    const body = await req.json();
+    const grade = body.grade;
 
-    if (!grade) {
-      return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
-    }
+    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
 
     await connectDB();
-    const AdmissionModel = getAdmissionModel(grade);
+    const Admission = getAdmissionModel(grade);
 
-    const newStudent = await AdmissionModel.create(studentData);
+    const newStudent = await Admission.create(body);
+
     return NextResponse.json({ success: true, data: newStudent });
   } catch (err) {
-    console.error('❌ POST Error:', err);
+    console.error('POST Error:', err);
     return NextResponse.json({ success: false, error: 'Failed to create student' }, { status: 500 });
   }
 }
