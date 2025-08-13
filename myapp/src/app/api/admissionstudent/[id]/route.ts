@@ -1,12 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
 import getAdmissionModel from '@/model/admissionModel';
 
 // GET single student
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const { searchParams } = new URL(request.url);
-    const grade = searchParams.get('grade');
+    const grade = request.nextUrl.searchParams.get('grade');
 
     if (!grade) {
       return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
@@ -28,7 +27,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 }
 
 // PUT update student
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const body = await request.json();
     const { grade, ...updateData } = body;
@@ -56,10 +55,9 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 }
 
 // DELETE student
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const { searchParams } = new URL(request.url);
-    const grade = searchParams.get('grade');
+    const grade = request.nextUrl.searchParams.get('grade');
 
     if (!grade) {
       return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
@@ -79,7 +77,6 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     return NextResponse.json({ success: false, error: 'Failed to delete student' }, { status: 500 });
   }
 }
-
 
 
 
