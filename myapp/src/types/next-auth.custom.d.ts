@@ -1,5 +1,5 @@
 // ✅ Must have at least one import to be treated as a module
-import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
+import { DefaultSession, DefaultUser } from "next-auth";
 import { JWT as DefaultJWT } from "next-auth/jwt";
 
 declare module "next-auth" {
