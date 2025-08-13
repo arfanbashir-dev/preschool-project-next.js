@@ -1,5 +1,16 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
+// import type { NextConfig } from "next";
+
+// const nextConfig: NextConfig = {
+//   images: {
+//     domains: ["res.cloudinary.com"], // allow Cloudinary images
+//   },
+// };
+
+// export default nextConfig;
+
 
 export default function AdmissionForm() {
   const [formData, setFormData] = useState({
@@ -107,11 +118,10 @@ export default function AdmissionForm() {
       />
 
       {/* Preview */}
-      {preview && (
-        <img   src={preview}     alt="Preview"
-          className="h-20 w-20 object-cover rounded-full border"
+      {previewUrl && (
+        <Image  src={previewUrl} alt="Preview" width={100}  height={100}   className="rounded-full object-cover"
         />
-      )}
+        )}
 
       {/* Upload status */}
       {uploading && <p className="text-sm text-gray-500">Uploading image...</p>}
