@@ -4,7 +4,7 @@ import Image from "next/image";
 
 
 export default function AdmissionForm() {
-  const [formData, setFormData] = useState({  name: "",  grade: "",   myimg: "",  });
+  const [formData, setFormData] = useState({  name: "",  grade: "", myimg: ""    });
   const [preview, setPreview] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
 
@@ -56,7 +56,7 @@ export default function AdmissionForm() {
 
       if (res.ok) {
         alert("Admission submitted successfully!");
-        setFormData({ name: "", grade: "", myimg: "" });
+        setFormData({ name: "", grade: "" , myimg: ""});
         setPreview(null);
       } else {
         console.error(await res.text());
@@ -97,7 +97,7 @@ export default function AdmissionForm() {
       </select>
 
       {/* Image Upload */}
-      <input
+       <input
         type="file"
         accept="image/*"
         onChange={handleImageChange}
@@ -105,15 +105,15 @@ export default function AdmissionForm() {
       />
 
       {/* Preview */}
-      {preview && (
+       {preview && (
           <Image  src={preview}  alt="Preview"  width={100}  height={100}  className="rounded-full object-cover"
           unoptimized
           />
-        )}
+        )} 
 
 
       {/* Upload status */}
-      {uploading && <p className="text-sm text-gray-500">Uploading image...</p>}
+      {/* {uploading && <p className="text-sm text-gray-500">Uploading image...</p>} */} 
 
       <button
         type="submit"
