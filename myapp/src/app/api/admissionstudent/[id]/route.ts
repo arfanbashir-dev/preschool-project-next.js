@@ -2,64 +2,98 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
 import getAdmissionModel from '@/model/admissionModel';
 
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+interface Params {
+  id: string;
+}
+
+// ✅ GET — Fetch a single student by ID
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Params }
+) {
   try {
-    const { id } = context.params;
-    const grade = req.nextUrl.searchParams.get('grade');
-
-    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
-
     await connectDB();
-    const Admission = getAdmissionModel(grade);
-    const student = await Admission.findById(id).lean();
+    const AdmissionModel = getAdmissionModel(); // get correct Mongoose model
 
-    if (!student) return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
+    const student = await AdmissionModel.findById(params.id);
+    if (!student) {
+      return NextResponse.json(
+        { message: 'Student not found' },
+        { status: 404 }
+      );
+    }
 
-    return NextResponse.json({ success: true, data: student });
-  } catch (err) {
-    console.error('GET Error:', err);
-    return NextResponse.json({ success: false, error: 'Failed to fetch student' }, { status: 500 });
+    return NextResponse.json(student);
+  } catch (error) {
+    console.error('Error fetching student:', error);
+    return NextResponse.json(
+      { message: 'Server error' },
+      { status: 500 }
+    );
   }
 }
 
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+// ✅ PUT — Update a student by ID
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Params }
+) {
   try {
-    const { id } = context.params;
-    const body = await req.json();
-    const grade = body.grade || req.nextUrl.searchParams.get('grade');
-
-    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
+    const data = await request.json();
 
     await connectDB();
-    const Admission = getAdmissionModel(grade);
-    const updated = await Admission.findByIdAndUpdate(id, body, { new: true, runValidators: true }).lean();
+    const AdmissionModel = getAdmissionModel();
 
-    if (!updated) return NextResponse.json({ success: false, error: 'Update failed' }, { status: 404 });
+    const updatedStudent = await AdmissionModel.findByIdAndUpdate(
+      params.id,
+      data,
+      { new: true }
+    );
 
-    return NextResponse.json({ success: true, data: updated });
-  } catch (err) {
-    console.error('PUT Error:', err);
-    return NextResponse.json({ success: false, error: 'Failed to update student' }, { status: 500 });
+    if (!updatedStudent) {
+      return NextResponse.json(
+        { message: 'Student not found' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(updatedStudent);
+  } catch (error) {
+    console.error('Error updating student:', error);
+    return NextResponse.json(
+      { message: 'Server error' },
+      { status: 500 }
+    );
   }
 }
 
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+// ✅ DELETE — Remove a student by ID
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Params }
+) {
   try {
-    const { id } = context.params;
-    const grade = req.nextUrl.searchParams.get('grade');
-
-    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
-
     await connectDB();
-    const Admission = getAdmissionModel(grade);
-    const deleted = await Admission.findByIdAndDelete(id).lean();
+    const AdmissionModel = getAdmissionModel();
 
-    if (!deleted) return NextResponse.json({ success: false, error: 'Delete failed' }, { status: 404 });
+    const deletedStudent = await AdmissionModel.findByIdAndDelete(params.id);
+    if (!deletedStudent) {
+      return NextResponse.json(
+        { message: 'Student not found' },
+        { status: 404 }
+      );
+    }
 
-    return NextResponse.json({ success: true, message: 'Student deleted successfully' });
-  } catch (err) {
-    console.error('DELETE Error:', err);
-    return NextResponse.json({ success: false, error: 'Failed to delete student' }, { status: 500 });
+    return NextResponse.json(
+      { message: 'Student deleted successfully' },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error('Error deleting student:', error);
+    return NextResponse.json(
+      { message: 'Server error' },
+      { status: 500 }
+    );
   }
 }
 
