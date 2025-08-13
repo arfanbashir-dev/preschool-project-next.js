@@ -2,15 +2,14 @@ import { NextResponse, NextRequest } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
 import getAdmissionModel from '@/model/admissionModel';
 
+// GET all students for a grade with pagination
 export async function GET(req: NextRequest) {
   try {
     const grade = req.nextUrl.searchParams.get('grade');
     const page = Math.max(1, parseInt(req.nextUrl.searchParams.get('page') || '1', 10));
     const limit = Math.max(1, parseInt(req.nextUrl.searchParams.get('limit') || '20', 10));
 
-    if (!grade) {
-      return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
-    }
+    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
 
     await connectDB();
     const AdmissionModel = getAdmissionModel(grade);
