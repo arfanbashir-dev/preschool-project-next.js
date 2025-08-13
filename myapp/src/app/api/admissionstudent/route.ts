@@ -2,14 +2,16 @@ import { NextResponse, NextRequest } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
 import getAdmissionModel from '@/model/admissionModel';
 
-// GET all students for a grade with pagination
-export async function GET(req: NextRequest) {
+// GET all students by grade
+export async function GET(request: NextRequest) {
   try {
-    const grade = req.nextUrl.searchParams.get('grade');
-    const page = Math.max(1, parseInt(req.nextUrl.searchParams.get('page') || '1', 10));
-    const limit = Math.max(1, parseInt(req.nextUrl.searchParams.get('limit') || '20', 10));
+    const grade = request.nextUrl.searchParams.get('grade');
+    const page = Math.max(1, parseInt(request.nextUrl.searchParams.get('page') || '1', 10));
+    const limit = Math.max(1, parseInt(request.nextUrl.searchParams.get('limit') || '20', 10));
 
-    if (!grade) return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
+    if (!grade) {
+      return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
+    }
 
     await connectDB();
     const AdmissionModel = getAdmissionModel(grade);
@@ -19,7 +21,7 @@ export async function GET(req: NextRequest) {
         .skip((page - 1) * limit)
         .limit(limit)
         .lean(),
-      AdmissionModel.countDocuments(),
+      AdmissionModel.countDocuments()
     ]);
 
     return NextResponse.json({
@@ -29,12 +31,33 @@ export async function GET(req: NextRequest) {
         totalStudents,
         totalPages: Math.ceil(totalStudents / limit),
         currentPage: page,
-        limit,
-      },
+        limit
+      }
     });
   } catch (err) {
-    console.error(err);
+    console.error('❌ GET Error:', err);
     return NextResponse.json({ success: false, error: 'Failed to fetch students' }, { status: 500 });
+  }
+}
+
+// POST - create new student
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { grade, ...studentData } = body;
+
+    if (!grade) {
+      return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
+    }
+
+    await connectDB();
+    const AdmissionModel = getAdmissionModel(grade);
+
+    const newStudent = await AdmissionModel.create(studentData);
+    return NextResponse.json({ success: true, data: newStudent });
+  } catch (err) {
+    console.error('❌ POST Error:', err);
+    return NextResponse.json({ success: false, error: 'Failed to create student' }, { status: 500 });
   }
 }
 

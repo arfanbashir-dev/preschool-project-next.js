@@ -1,128 +1,99 @@
 "use client";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
+import { useSearchParams, useRouter } from "next/navigation";
 
+interface Student {
+  _id: string;
+  firstname: string;
+  lastname: string;
+  grade: string;
+  myimg?: string;
+}
 
-export default function AdmissionForm() {
-  const [formData, setFormData] = useState({  name: "",  grade: "", myimg: ""    });
-  const [preview, setPreview] = useState<string | null>(null);
-  const [uploading, setUploading] = useState(false);
+export default function AdmissionRecords() {
+  const searchParams = useSearchParams();
+  const grade = searchParams.get("grade") || "preschool"; // default
+  const router = useRouter();
 
-  // Handle text input changes
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const [students, setStudents] = useState<Student[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Handle image selection
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Show local preview
-    setPreview(URL.createObjectURL(file));
-
-    // Upload to Cloudinary
-    setUploading(true);
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!);
-    data.append("folder", "admissions"); // auto-create folder
-
+  const fetchStudents = async () => {
     try {
-      const res = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, {
-        method: "POST",
-        body: data,
-      });
-
-      const cloudData = await res.json();
-      setFormData((prev) => ({ ...prev, myimg: cloudData.secure_url }));
+      const res = await fetch(`/api/admissionstudent?grade=${grade}`);
+      const data = await res.json();
+      if (res.ok) setStudents(data.data);
+      else console.error(data.error);
     } catch (err) {
-      console.error("Cloudinary Upload Error", err);
+      console.error(err);
     } finally {
-      setUploading(false);
+      setLoading(false);
     }
   };
 
-  // Submit form data to backend
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    fetchStudents();
+  }, [grade]);
+
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure to delete this student?")) return;
 
     try {
-      const res = await fetch("/api/admission", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (res.ok) {
-        alert("Admission submitted successfully!");
-        setFormData({ name: "", grade: "" , myimg: ""});
-        setPreview(null);
-      } else {
-        console.error(await res.text());
-        alert("Error submitting form");
-      }
-    } catch (error) {
-      console.error("Submit Error:", error);
+      const res = await fetch(`/api/admissionstudent/${id}?grade=${grade}`, { method: "DELETE" });
+      const data = await res.json();
+      if (res.ok) fetchStudents();
+      else alert(data.error);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete student");
     }
   };
+
+  if (loading) return <p className="p-4">Loading...</p>;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto bg-white p-6 rounded-lg shadow">
-      <h2 className="text-2xl font-bold">Student Admission Form</h2>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Admission Records ({grade})</h1>
 
-      {/* Name */}
-      <input
-        type="text"
-        name="name"
-        placeholder="Student Name"
-        value={formData.name}
-        onChange={handleChange}
-        className="border p-2 w-full rounded"
-        required
-      />
+      <Link href={`/admissionstudent?grade=${grade}`} className="mb-4 inline-block text-blue-500 underline">
+        Add New Student
+      </Link>
 
-      {/* Grade */}
-      <select
-        name="grade"
-        value={formData.grade}
-        onChange={handleChange}
-        className="border p-2 w-full rounded"
-        required
-      >
-        <option value="">Select Grade</option>
-        <option value="preschool">Pre School</option>
-        <option value="kindergarten">Kindergarten</option>
-        <option value="grade1">Grade 1</option>
-      </select>
-
-      {/* Image Upload */}
-       <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageChange}
-        className="border p-2 w-full rounded"
-      />
-
-      {/* Preview */}
-       {preview && (
-          <Image  src={preview}  alt="Preview"  width={100}  height={100}  className="rounded-full object-cover"
-          unoptimized
-          />
-        )} 
-
-
-      {/* Upload status */}
-      {/* {uploading && <p className="text-sm text-gray-500">Uploading image...</p>} */} 
-
-      <button
-        type="submit"
-        disabled={uploading}
-        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
-      >
-        Submit Admission
-      </button>
-    </form>
+      <table className="w-full border-collapse border">
+        <thead>
+          <tr>
+            <th className="border p-2">Photo</th>
+            <th className="border p-2">First Name</th>
+            <th className="border p-2">Last Name</th>
+            <th className="border p-2">Grade</th>
+            <th className="border p-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {students.map((stu) => (
+            <tr key={stu._id}>
+              <td className="border p-2">
+                {stu.myimg && <Image src={stu.myimg} width={50} height={50} alt={stu.firstname} className="rounded-full" unoptimized />}
+              </td>
+              <td className="border p-2">{stu.firstname}</td>
+              <td className="border p-2">{stu.lastname}</td>
+              <td className="border p-2">{stu.grade}</td>
+              <td className="border p-2 space-x-2">
+                <Link href={`/editadmissionstudentrecord/${stu._id}?grade=${stu.grade}`} className="text-blue-500 underline">
+                  Edit
+                </Link>
+                <button onClick={() => handleDelete(stu._id)} className="text-red-500 underline">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
