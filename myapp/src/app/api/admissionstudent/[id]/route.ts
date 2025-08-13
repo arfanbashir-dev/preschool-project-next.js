@@ -2,98 +2,62 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
 import getAdmissionModel from '@/model/admissionModel';
 
-interface Params {
-  id: string;
-}
+// ✅ The correct type definition for Next.js 15 route handlers
+type RouteParams = {
+  params: Promise<{
+    id: string;
+  }>;
+};
 
-// ✅ GET — Fetch a single student by ID
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Params }
-) {
+// ✅ GET — Fetch single student
+export async function GET(req: NextRequest, context: RouteParams) {
+  const { id } = await context.params; // ✅ must await in Next.js 15
   try {
     await connectDB();
-    const AdmissionModel = getAdmissionModel(); // get correct Mongoose model
-
-    const student = await AdmissionModel.findById(params.id);
+    const AdmissionModel = getAdmissionModel();
+    const student = await AdmissionModel.findById(id);
     if (!student) {
-      return NextResponse.json(
-        { message: 'Student not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: 'Student not found' }, { status: 404 });
     }
-
     return NextResponse.json(student);
   } catch (error) {
     console.error('Error fetching student:', error);
-    return NextResponse.json(
-      { message: 'Server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: 'Server error' }, { status: 500 });
   }
 }
 
-// ✅ PUT — Update a student by ID
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Params }
-) {
+// ✅ PUT — Update student
+export async function PUT(req: NextRequest, context: RouteParams) {
+  const { id } = await context.params;
   try {
-    const data = await request.json();
-
+    const body = await req.json();
     await connectDB();
     const AdmissionModel = getAdmissionModel();
-
-    const updatedStudent = await AdmissionModel.findByIdAndUpdate(
-      params.id,
-      data,
-      { new: true }
-    );
-
+    const updatedStudent = await AdmissionModel.findByIdAndUpdate(id, body, { new: true });
     if (!updatedStudent) {
-      return NextResponse.json(
-        { message: 'Student not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: 'Student not found' }, { status: 404 });
     }
-
     return NextResponse.json(updatedStudent);
   } catch (error) {
     console.error('Error updating student:', error);
-    return NextResponse.json(
-      { message: 'Server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: 'Server error' }, { status: 500 });
   }
 }
 
-// ✅ DELETE — Remove a student by ID
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Params }
-) {
+// ✅ DELETE — Remove student
+export async function DELETE(req: NextRequest, context: RouteParams) {
+  const { id } = await context.params;
   try {
     await connectDB();
     const AdmissionModel = getAdmissionModel();
-
-    const deletedStudent = await AdmissionModel.findByIdAndDelete(params.id);
+    const deletedStudent = await AdmissionModel.findByIdAndDelete(id);
     if (!deletedStudent) {
-      return NextResponse.json(
-        { message: 'Student not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: 'Student not found' }, { status: 404 });
     }
-
-    return NextResponse.json(
-      { message: 'Student deleted successfully' },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: 'Student deleted successfully' }, { status: 200 });
   } catch (error) {
     console.error('Error deleting student:', error);
-    return NextResponse.json(
-      { message: 'Server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: 'Server error' }, { status: 500 });
   }
 }
 
