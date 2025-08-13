@@ -50,7 +50,7 @@ export default function StaffTableAndChart({ staff }: { staff: Staff[] }) {
           </tr>
         </thead>
         <tbody>
-          {staff.map((staff: any) => (
+          {staff.map((staff) => (
             <tr key={staff._id}>
               <td className="border px-4 py-2">{staff.name}</td>
               <td className="border px-4 py-2">{staff.email}</td>

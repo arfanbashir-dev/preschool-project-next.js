@@ -12,9 +12,9 @@ import StudentTableAndChart from './StudentTableAndChart'
 
 
 import { 
-  FaHome, FaUserPlus,  FaChartBar, FaTable, FaGraduationCap, FaFolderOpen ,
+  FaHome, FaUserPlus,   FaTable, FaGraduationCap, 
   FaUserTie,  FaChalkboardTeacher,  FaUserGraduate,  FaUserShield,  FaUserCog,  
-  FaUsers,  FaUserFriends,  FaCogs,  FaUser
+  FaUserFriends,  FaCogs,  FaUser
 } from 'react-icons/fa';
 
 type User =    { _id: string; name: string; email: string ; role: string }

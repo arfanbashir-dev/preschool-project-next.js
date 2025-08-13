@@ -15,7 +15,7 @@ const HomeWellComePage = () => {
                 <br/>
                 <br/>
                 <p> 
-                    Rated 'Excellent in all areas' by the ISI in January 2023, 
+                    Rated Excellent in all areas by the ISI in January 2023, 
                     Little Genius TechSchool is a small independent Day School and 
                     Preschool in Pakistan for girls and boys from 3 -11 years old. 
                 </p>

@@ -68,8 +68,8 @@ export default function AdmissionProcessFunc(){
                 > 
                     <div className='bg-medium w-[700px] h-80 flex-column items-center gap-5 rounded-xl p-5'>
                         <h1>Apply</h1>
-                        <p>When you're ready to take the next step, register your child with us by completing this Hendon Prep Registration Form and returning it to our Admissions Team along with a non-refundable, £120 Registration fee.</p>
-                        <p>This will enable us to start our admission process to ensure that we can meet your child's needs. Forms need to be signed by both parents and may be returned by post, or scanned copies by email.</p>
+                        <p>When you are ready to take the next step, register your child with us by completing this Hendon Prep Registration Form and returning it to our Admissions Team along with a non-refundable, £120 Registration fee.</p>
+                        <p>This will enable us to start our admission process to ensure that we can meet your child needs. Forms need to be signed by both parents and may be returned by post, or scanned copies by email.</p>
                         <button className='-ml-96'> <Link  href="/apply" >Apply</Link></button>
                     </div>
                 </motion.div>
