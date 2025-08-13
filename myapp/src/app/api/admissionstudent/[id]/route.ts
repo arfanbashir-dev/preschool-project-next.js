@@ -2,10 +2,8 @@ import { NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
 import getAdmissionModel from '@/model/admissionModel';
 
-export async function GET(
-  request: Request,
-  context: { params: { id: string } }
-) {
+// GET single student
+export async function GET(request: Request, { params }: { params: { id: string } }) {
   try {
     const { searchParams } = new URL(request.url);
     const grade = searchParams.get('grade');
@@ -16,7 +14,7 @@ export async function GET(
 
     await connectDB();
     const AdmissionModel = getAdmissionModel(grade);
-    const student = await AdmissionModel.findById(context.params.id).lean();
+    const student = await AdmissionModel.findById(params.id).lean();
 
     if (!student) {
       return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
@@ -24,17 +22,13 @@ export async function GET(
 
     return NextResponse.json({ success: true, data: student });
   } catch (err) {
-    console.error('❌ GET Error:', err);
+    console.error(err);
     return NextResponse.json({ success: false, error: 'Failed to fetch student' }, { status: 500 });
   }
 }
 
-// Do the same for PUT and DELETE:
-
-export async function PUT(
-  request: Request,
-  context: { params: { id: string } }
-) {
+// PUT update student
+export async function PUT(request: Request, { params }: { params: { id: string } }) {
   try {
     const body = await request.json();
     const { grade, ...updateData } = body;
@@ -45,11 +39,10 @@ export async function PUT(
 
     await connectDB();
     const AdmissionModel = getAdmissionModel(grade);
-    const updatedStudent = await AdmissionModel.findByIdAndUpdate(
-      context.params.id,
-      updateData,
-      { new: true, runValidators: true }
-    ).lean();
+    const updatedStudent = await AdmissionModel.findByIdAndUpdate(params.id, updateData, {
+      new: true,
+      runValidators: true,
+    }).lean();
 
     if (!updatedStudent) {
       return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
@@ -57,15 +50,13 @@ export async function PUT(
 
     return NextResponse.json({ success: true, data: updatedStudent });
   } catch (err) {
-    console.error('❌ PUT Error:', err);
+    console.error(err);
     return NextResponse.json({ success: false, error: 'Failed to update student' }, { status: 500 });
   }
 }
 
-export async function DELETE(
-  request: Request,
-  context: { params: { id: string } }
-) {
+// DELETE student
+export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   try {
     const { searchParams } = new URL(request.url);
     const grade = searchParams.get('grade');
@@ -76,7 +67,7 @@ export async function DELETE(
 
     await connectDB();
     const AdmissionModel = getAdmissionModel(grade);
-    const deletedStudent = await AdmissionModel.findByIdAndDelete(context.params.id).lean();
+    const deletedStudent = await AdmissionModel.findByIdAndDelete(params.id).lean();
 
     if (!deletedStudent) {
       return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
@@ -84,10 +75,105 @@ export async function DELETE(
 
     return NextResponse.json({ success: true, message: 'Student deleted successfully' });
   } catch (err) {
-    console.error('❌ DELETE Error:', err);
+    console.error(err);
     return NextResponse.json({ success: false, error: 'Failed to delete student' }, { status: 500 });
   }
 }
+
+
+
+
+
+// import { NextResponse } from 'next/server';
+// import { connectDB } from '@/lib/mongoose';
+// import getAdmissionModel from '@/model/admissionModel';
+
+// export async function GET(
+//   request: Request,
+//   context: { params: { id: string } }
+// ) {
+//   try {
+//     const { searchParams } = new URL(request.url);
+//     const grade = searchParams.get('grade');
+
+//     if (!grade) {
+//       return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
+//     }
+
+//     await connectDB();
+//     const AdmissionModel = getAdmissionModel(grade);
+//     const student = await AdmissionModel.findById(context.params.id).lean();
+
+//     if (!student) {
+//       return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
+//     }
+
+//     return NextResponse.json({ success: true, data: student });
+//   } catch (err) {
+//     console.error('❌ GET Error:', err);
+//     return NextResponse.json({ success: false, error: 'Failed to fetch student' }, { status: 500 });
+//   }
+// }
+
+// // Do the same for PUT and DELETE:
+
+// export async function PUT(
+//   request: Request,
+//   context: { params: { id: string } }
+// ) {
+//   try {
+//     const body = await request.json();
+//     const { grade, ...updateData } = body;
+
+//     if (!grade) {
+//       return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
+//     }
+
+//     await connectDB();
+//     const AdmissionModel = getAdmissionModel(grade);
+//     const updatedStudent = await AdmissionModel.findByIdAndUpdate(
+//       context.params.id,
+//       updateData,
+//       { new: true, runValidators: true }
+//     ).lean();
+
+//     if (!updatedStudent) {
+//       return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
+//     }
+
+//     return NextResponse.json({ success: true, data: updatedStudent });
+//   } catch (err) {
+//     console.error('❌ PUT Error:', err);
+//     return NextResponse.json({ success: false, error: 'Failed to update student' }, { status: 500 });
+//   }
+// }
+
+// export async function DELETE(
+//   request: Request,
+//   context: { params: { id: string } }
+// ) {
+//   try {
+//     const { searchParams } = new URL(request.url);
+//     const grade = searchParams.get('grade');
+
+//     if (!grade) {
+//       return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
+//     }
+
+//     await connectDB();
+//     const AdmissionModel = getAdmissionModel(grade);
+//     const deletedStudent = await AdmissionModel.findByIdAndDelete(context.params.id).lean();
+
+//     if (!deletedStudent) {
+//       return NextResponse.json({ success: false, error: 'Student not found' }, { status: 404 });
+//     }
+
+//     return NextResponse.json({ success: true, message: 'Student deleted successfully' });
+//   } catch (err) {
+//     console.error('❌ DELETE Error:', err);
+//     return NextResponse.json({ success: false, error: 'Failed to delete student' }, { status: 500 });
+//   }
+// }
 
 
 
