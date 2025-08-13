@@ -71,7 +71,7 @@ export default function RegisterFunc(){
 
                             <h1 className="child ml-[30%] font-bold">Register for an account</h1>
                             <p >If you have already registered to any other Little Genius TechSchool, please go to the login page and use the same login details to access this site.</p>
-                            <p className="child">"*" indicates required fields</p>
+                            <p className="child">* indicates required fields</p>
                             <p className="child">Please fill in the form below to register for an account on this website.</p>
 
                         </div>
