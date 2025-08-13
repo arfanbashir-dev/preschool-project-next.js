@@ -1,16 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
 import getAdmissionModel from '@/model/admissionModel';
 
-/**
- * GET - Fetch all students for a grade (with pagination)
- */
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const grade = searchParams.get('grade');
-    const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
-    const limit = Math.max(1, parseInt(searchParams.get('limit') || '20', 10));
+    const grade = req.nextUrl.searchParams.get('grade');
+    const page = Math.max(1, parseInt(req.nextUrl.searchParams.get('page') || '1', 10));
+    const limit = Math.max(1, parseInt(req.nextUrl.searchParams.get('limit') || '20', 10));
 
     if (!grade) {
       return NextResponse.json({ success: false, error: 'Grade is required' }, { status: 400 });
@@ -24,7 +20,7 @@ export async function GET(req: Request) {
         .skip((page - 1) * limit)
         .limit(limit)
         .lean(),
-      AdmissionModel.countDocuments()
+      AdmissionModel.countDocuments(),
     ]);
 
     return NextResponse.json({
@@ -34,11 +30,11 @@ export async function GET(req: Request) {
         totalStudents,
         totalPages: Math.ceil(totalStudents / limit),
         currentPage: page,
-        limit
-      }
+        limit,
+      },
     });
   } catch (err) {
-    console.error('❌ GET Error:', err);
+    console.error(err);
     return NextResponse.json({ success: false, error: 'Failed to fetch students' }, { status: 500 });
   }
 }
