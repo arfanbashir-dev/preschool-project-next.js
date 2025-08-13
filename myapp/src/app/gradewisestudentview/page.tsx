@@ -1,4 +1,5 @@
 'use client'
+
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
@@ -11,15 +12,8 @@ const gradeOptions = [
   { value: 'prep', label: 'Prep' }
 ];
 
-type Student = {
-  _id: string;
-  firstname: string;
-  lastname: string;
-  date_of_birth: string;
-  gender: string;
-  fathername: string;
-  myimg?: string;
-};
+type Student = {  _id: string;  firstname: string;  lastname: string;  date_of_birth: string;
+  gender: string;  fathername: string;  myimg: string; };
 
 
 

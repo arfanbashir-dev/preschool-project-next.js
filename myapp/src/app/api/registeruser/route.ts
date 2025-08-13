@@ -20,6 +20,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true, message: 'User registered successfully' });
   } catch (err) {
-    return NextResponse.json({ success: false, message: 'Error registering user' });
+    return NextResponse.json({ success: false,  err});//message: 'Error registering user' });
   }
 }
