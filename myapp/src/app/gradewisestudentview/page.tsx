@@ -1,3 +1,16 @@
+
+
+export default function Testing (){
+    return(
+        <div>
+            <h1>Tesing</h1>
+        </div>
+    )
+}
+
+
+
+
 // 'use client'
 
 // import { useSession } from "next-auth/react";
