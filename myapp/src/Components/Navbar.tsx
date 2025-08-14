@@ -1,12 +1,9 @@
-//for mobile friendly
-
 'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
 import LogoImg from '../../public/logopreschool.png';
 import { IoSearch } from "react-icons/io5";
-import { FaCaretDown } from "react-icons/fa";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
@@ -24,16 +21,42 @@ export default function Navbar() {
 
   return (
     <nav className="bg-slate-600 fixed z-10 w-full">
-      {/* Top bar */}
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
         
-        {/* Logo + Title */}
+        {/* Logo */}
         <div className="flex items-center gap-3">
           <Image src={LogoImg} alt="logo" className="w-16 h-auto" />
           <span className="text-white font-bold text-lg sm:text-xl">Little Genius TechSchool</span>
         </div>
 
-        {/* Search (hidden on mobile) */}
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex items-center gap-6">
+          {navObj.map((item) => (
+            <div key={item.id} className="relative group">
+              <Link href={item.href} className="text-white font-medium hover:text-gray-300">
+                {item.title}
+              </Link>
+              {/* Submenu */}
+              {item.submenu && (
+                <div className="absolute left-0 hidden group-hover:block bg-slate-700 mt-2 rounded shadow-lg">
+                  {item.submenu.map((sub, idx) => (
+                    <Link key={idx} href={sub.href} className="block px-4 py-2 text-white hover:bg-slate-600">
+                      {sub.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+
+          {session?.user?.role === 'admin' && (
+            <Link href="/dashboard" className="text-white font-medium hover:text-gray-300">
+              DASHBOARD
+            </Link>
+          )}
+        </div>
+
+        {/* Search (Desktop) */}
         <div className="hidden md:flex items-center gap-2 relative">
           <input
             type="text"
