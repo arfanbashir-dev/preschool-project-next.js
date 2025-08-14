@@ -30,16 +30,16 @@ export const navObj:NavItem[] = [
       { title: 'Annoucements', href: '/announcements' }
     ]
   },
-  {
-    id: '5', title: 'ADMISSION INFO', href: '',
-    submenu: [
-      { title: 'Admission Process', href: '/admissionprocess' },
-      { title: 'Apply', href: '/apply' },
-      { title: 'Admission Form', href: '/admissionform' },
-      { title: 'Fee', href: '/fee' },
-      { title: 'Term Dates', href: '/termdates' },
-    ]
-  },
+  // {
+  //   id: '5', title: 'ADMISSION INFO', href: '',
+  //   submenu: [
+  //     { title: 'Admission Process', href: '/admissionprocess' },
+  //     { title: 'Apply', href: '/apply' },
+  //     { title: 'Admission Form', href: '/admissionform' },
+  //     { title: 'Fee', href: '/fee' },
+  //     { title: 'Term Dates', href: '/termdates' },
+  //   ]
+  // },
   {
     id: '6', title:'CONTACT', href: '/contact'
   }

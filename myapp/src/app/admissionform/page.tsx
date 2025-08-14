@@ -1,101 +1,107 @@
-"use client";
+// "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useSearchParams, useRouter } from "next/navigation";
+// import { useEffect, useState } from "react";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { useSearchParams, useRouter } from "next/navigation";
 
-interface Student {
-  _id: string;
-  firstname: string;
-  lastname: string;
-  grade: string;
-  myimg?: string;
-}
+// interface Student {
+//   _id: string;
+//   firstname: string;
+//   lastname: string;
+//   grade: string;
+//   myimg?: string;
+// }
 
-export default function AdmissionRecords() {
-  const searchParams = useSearchParams();
-  const grade = searchParams.get("grade") || "preschool"; // default
-  const router = useRouter();
+// export default function AdmissionRecords() {
+//   const searchParams = useSearchParams();
+//   const grade = searchParams.get("grade") || "preschool"; // default
+//   const router = useRouter();
 
-  const [students, setStudents] = useState<Student[]>([]);
-  const [loading, setLoading] = useState(true);
+//   const [students, setStudents] = useState<Student[]>([]);
+//   const [loading, setLoading] = useState(true);
 
-  const fetchStudents = async () => {
-    try {
-      const res = await fetch(`/api/admissionstudent?grade=${grade}`);
-      const data = await res.json();
-      if (res.ok) setStudents(data.data);
-      else console.error(data.error);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+//   const fetchStudents = async () => {
+//     try {
+//       const res = await fetch(`/api/admissionstudent?grade=${grade}`);
+//       const data = await res.json();
+//       if (res.ok) setStudents(data.data);
+//       else console.error(data.error);
+//     } catch (err) {
+//       console.error(err);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
-  useEffect(() => {
-    fetchStudents();
-  }, [grade]);
+//   useEffect(() => {
+//     fetchStudents();
+//   }, [grade]);
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure to delete this student?")) return;
+//   const handleDelete = async (id: string) => {
+//     if (!confirm("Are you sure to delete this student?")) return;
 
-    try {
-      const res = await fetch(`/api/admissionstudent/${id}?grade=${grade}`, { method: "DELETE" });
-      const data = await res.json();
-      if (res.ok) fetchStudents();
-      else alert(data.error);
-    } catch (err) {
-      console.error(err);
-      alert("Failed to delete student");
-    }
-  };
+//     try {
+//       const res = await fetch(`/api/admissionstudent/${id}?grade=${grade}`, { method: "DELETE" });
+//       const data = await res.json();
+//       if (res.ok) fetchStudents();
+//       else alert(data.error);
+//     } catch (err) {
+//       console.error(err);
+//       alert("Failed to delete student");
+//     }
+//   };
 
-  if (loading) return <p className="p-4">Loading...</p>;
+//   if (loading) return <p className="p-4">Loading...</p>;
 
-  return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Admission Records ({grade})</h1>
+//   return (
+//     <div className="container mx-auto p-4">
+//       <h1 className="text-2xl font-bold mb-4">Admission Records ({grade})</h1>
 
-      <Link href={`/admissionstudent?grade=${grade}`} className="mb-4 inline-block text-blue-500 underline">
-        Add New Student
-      </Link>
+//       <Link href={`/admissionstudent?grade=${grade}`} className="mb-4 inline-block text-blue-500 underline">
+//         Add New Student
+//       </Link>
 
-      <table className="w-full border-collapse border">
-        <thead>
-          <tr>
-            <th className="border p-2">Photo</th>
-            <th className="border p-2">First Name</th>
-            <th className="border p-2">Last Name</th>
-            <th className="border p-2">Grade</th>
-            <th className="border p-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((stu) => (
-            <tr key={stu._id}>
-              <td className="border p-2">
-                {stu.myimg && <Image src={stu.myimg} width={50} height={50} alt={stu.firstname} className="rounded-full" unoptimized />}
-              </td>
-              <td className="border p-2">{stu.firstname}</td>
-              <td className="border p-2">{stu.lastname}</td>
-              <td className="border p-2">{stu.grade}</td>
-              <td className="border p-2 space-x-2">
-                <Link href={`/editadmissionstudentrecord/${stu._id}?grade=${stu.grade}`} className="text-blue-500 underline">
-                  Edit
-                </Link>
-                <button onClick={() => handleDelete(stu._id)} className="text-red-500 underline">
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
+//       <table className="w-full border-collapse border">
+//         <thead>
+//           <tr>
+//             <th className="border p-2">Photo</th>
+//             <th className="border p-2">First Name</th>
+//             <th className="border p-2">Last Name</th>
+//             <th className="border p-2">Grade</th>
+//             <th className="border p-2">Actions</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {students.map((stu) => (
+//             <tr key={stu._id}>
+//               <td className="border p-2">
+//                 {stu.myimg && <Image src={stu.myimg} width={50} height={50} alt={stu.firstname} className="rounded-full" unoptimized />}
+//               </td>
+//               <td className="border p-2">{stu.firstname}</td>
+//               <td className="border p-2">{stu.lastname}</td>
+//               <td className="border p-2">{stu.grade}</td>
+//               <td className="border p-2 space-x-2">
+//                 <Link href={`/editadmissionstudentrecord/${stu._id}?grade=${stu.grade}`} className="text-blue-500 underline">
+//                   Edit
+//                 </Link>
+//                 <button onClick={() => handleDelete(stu._id)} className="text-red-500 underline">
+//                   Delete
+//                 </button>
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
 
 
 // 'use client';

@@ -78,19 +78,19 @@ export default function Dashboard(
           </button>
           
           
-          <button className="link w-56 flex items-center gap-2  border-none" >
+          {/* <button className="link w-56 flex items-center gap-2  border-none" >
             <Link className="link flex-center gap-2" href="/gradewisestudentview"><FaGraduationCap/>Gradewise Students View</Link>
           </button>
-          
+           */}
 
           <button className="link w-56 flex items-center gap-2  border-none" 
             onClick={() => setView('studenttableandchart')}>
             <FaTable/> Student Table And Chart
           </button>          
 
-          <button className="link w-56 flex items-center gap-2  border-none" >
+          {/* <button className="link w-56 flex items-center gap-2  border-none" >
             <Link className="flex items-center gap-2" href="/editadmissionstudentrecord"><FaGraduationCap /> Edit Students Record</Link>
-          </button> 
+          </button>  */}
 
           
 
