@@ -183,16 +183,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import LogoImg from '../../public/logopreschool.png';
+import { useState } from 'react';
 import { IoSearch } from "react-icons/io5";
-import { FaCaretDown } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import {navObj} from '@/Constants/NavObj';
-
+import { FaBars, FaTimes, FaCaretDown } from "react-icons/fa";
 
 export default function Navbar() {
 
   const { data: session } = useSession();
+    const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
   const handleLogout = () => { router.push('/signout');  };
@@ -215,7 +216,7 @@ export default function Navbar() {
         <div className="relative flex-center gap-1">
           <input type="text" placeholder="Search" className="mr-10  bg-light "/>
           <IoSearch className="absolute top-3 right-56 text-white" />
-          <div className=' rounded-md font-bold mr-10'>
+          <div className='hidden lg:rounded-md lg:font-bold lg:mr-10'>
 
             {session?.user ? (
                 <button className=" link px-4 py-2 "
@@ -228,6 +229,11 @@ export default function Navbar() {
                     </button>            
                   )
             }
+            <button  className="lg:hidden text-white text-2xl"
+                    onClick={() => setMenuOpen(!menuOpen)}
+            >
+              {menuOpen ? <FaTimes /> : <FaBars />}
+            </button>
 
           </div>
         </div>
