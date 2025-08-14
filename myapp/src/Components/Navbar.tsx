@@ -1,96 +1,254 @@
-'use client'
+//for mobile friendly
+
+'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
 import LogoImg from '../../public/logopreschool.png';
 import { IoSearch } from "react-icons/io5";
 import { FaCaretDown } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
-import {navObj} from '@/Constants/NavObj';
-
+import { navObj } from '@/Constants/NavObj';
+import { useState } from 'react';
 
 export default function Navbar() {
-
   const { data: session } = useSession();
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     router.push('/signout');
   };
 
-  
   return (
-    <nav className="bg-slate-600  fixed z-10 h-32 w-full">
-      
-      <div className="flex-between">
-
+    <nav className="bg-slate-600 fixed z-10 w-full">
+      {/* Top bar */}
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+        
         {/* Logo + Title */}
-        <div className="flex-center ">
-          <Image src={LogoImg} alt="logo" className="w-24 " />
-          <span>Little Genius TechSchool</span>
+        <div className="flex items-center gap-3">
+          <Image src={LogoImg} alt="logo" className="w-16 h-auto" />
+          <span className="text-white font-bold text-lg sm:text-xl">Little Genius TechSchool</span>
         </div>
 
-        {/* Search */}
-        <div className="relative flex-center gap-1">
-          <input type="text" placeholder="Search" className="mr-10  bg-light "/>
-          <IoSearch className="absolute top-3 right-56 text-white" />
-          <div className=' rounded-md font-bold mr-10'>
-
-            {session?.user ? (
-                <button className=" link px-4 py-2 "
-                  onClick={handleLogout}              
-                >
-                  LogOut
-                </button>
-              ) : ( <button  className=" link px-4 py-2 ">                      
-                      <Link href="/loginadmin" > LogIn </Link>
-                    </button>            
-                  )
-            }
-
-          </div>
+        {/* Search (hidden on mobile) */}
+        <div className="hidden md:flex items-center gap-2 relative">
+          <input
+            type="text"
+            placeholder="Search"
+            className="px-3 py-1 rounded bg-white text-black focus:outline-none"
+          />
+          <IoSearch className="absolute right-3 text-gray-600" />
         </div>
 
+        {/* Desktop Buttons */}
+        <div className="hidden md:flex items-center gap-4">
+          {session?.user ? (
+            <button
+              className="bg-white text-slate-600 font-bold px-4 py-2 rounded"
+              onClick={handleLogout}
+            >
+              LogOut
+            </button>
+          ) : (
+            <Link href="/loginadmin" className="bg-white text-slate-600 font-bold px-4 py-2 rounded">
+              LogIn
+            </Link>
+          )}
+        </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden text-white text-2xl"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </div>
 
-      {/* Nav Links */}
-      
-        <div className="flex-center gap-10 ">
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-slate-700 px-4 py-4 space-y-3">
           {navObj.map((item) => (
-            <div key={item.id} className="group relative ">
-              <Link href={item.href} className="link flex-center gap-1  font-medium">
+            <div key={item.id}>
+              <Link
+                href={item.href}
+                className="block text-white font-medium py-2"
+                onClick={() => setMenuOpen(false)}
+              >
                 {item.title}
-                {item.submenu && <FaCaretDown className="group-hover:rotate-180" />}
               </Link>
               {item.submenu && (
-                <ul className="absolute  left-0 w-48 bg-light font-medium  p-2 rounded-lg shadow-lg hidden group-hover:block z-50">
+                <div className="pl-4">
                   {item.submenu.map((sub, idx) => (
-                    <li key={idx}>
-                      <Link href={sub.href} className="block px-4 py-2 link">
-                        {sub.title}
-                      </Link>
-                    </li>
+                    <Link
+                      key={idx}
+                      href={sub.href}
+                      className="block text-gray-300 py-1"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {sub.title}
+                    </Link>
                   ))}
-                </ul>
+                </div>
               )}
             </div>
-          ))}          
-          
-        
+          ))}
+
           {session?.user?.role === 'admin' && (
-            <Link href="/dashboard" className="link font-medium">DASHBOARD</Link>
+            <Link
+              href="/dashboard"
+              className="block text-white font-medium py-2"
+              onClick={() => setMenuOpen(false)}
+            >
+              DASHBOARD
+            </Link>
           )}
 
-          
+          {/* Mobile Search */}
+          <div className="flex items-center gap-2 mt-4">
+            <input
+              type="text"
+              placeholder="Search"
+              className="flex-grow px-3 py-1 rounded bg-white text-black focus:outline-none"
+            />
+            <IoSearch className="text-white text-xl" />
+          </div>
 
-      
-        
-      </div>
-      
+          {/* Mobile Log In/Out */}
+          <div className="mt-4">
+            {session?.user ? (
+              <button
+                className="w-full bg-white text-slate-600 font-bold px-4 py-2 rounded"
+                onClick={handleLogout}
+              >
+                LogOut
+              </button>
+            ) : (
+              <Link
+                href="/loginadmin"
+                className="block w-full bg-white text-slate-600 font-bold px-4 py-2 rounded text-center"
+                onClick={() => setMenuOpen(false)}
+              >
+                LogIn
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
+
+
+
+// 'use client'
+
+// import Link from 'next/link';
+// import Image from 'next/image';
+// import LogoImg from '../../public/logopreschool.png';
+// import { IoSearch } from "react-icons/io5";
+// import { FaCaretDown } from "react-icons/fa";
+// import { useSession } from "next-auth/react";
+// import { useRouter } from 'next/navigation';
+// import {navObj} from '@/Constants/NavObj';
+
+
+// export default function Navbar() {
+
+//   const { data: session } = useSession();
+//   const router = useRouter();
+
+//   const handleLogout = () => {
+//     router.push('/signout');
+//   };
+
+  
+//   return (
+//     <nav className="bg-slate-600  fixed z-10 h-32 w-full">
+      
+//       <div className="flex-between">
+
+//         {/* Logo + Title */}
+//         <div className="flex-center ">
+//           <Image src={LogoImg} alt="logo" className="w-24 " />
+//           <span>Little Genius TechSchool</span>
+//         </div>
+
+//         {/* Search */}
+//         <div className="relative flex-center gap-1">
+//           <input type="text" placeholder="Search" className="mr-10  bg-light "/>
+//           <IoSearch className="absolute top-3 right-56 text-white" />
+//           <div className=' rounded-md font-bold mr-10'>
+
+//             {session?.user ? (
+//                 <button className=" link px-4 py-2 "
+//                   onClick={handleLogout}              
+//                 >
+//                   LogOut
+//                 </button>
+//               ) : ( <button  className=" link px-4 py-2 ">                      
+//                       <Link href="/loginadmin" > LogIn </Link>
+//                     </button>            
+//                   )
+//             }
+
+//           </div>
+//         </div>
+
+//       </div>
+
+//       {/* Nav Links */}
+      
+//         <div className="flex-center gap-10 ">
+//           {navObj.map((item) => (
+//             <div key={item.id} className="group relative ">
+//               <Link href={item.href} className="link flex-center gap-1  font-medium">
+//                 {item.title}
+//                 {item.submenu && <FaCaretDown className="group-hover:rotate-180" />}
+//               </Link>
+//               {item.submenu && (
+//                 <ul className="absolute  left-0 w-48 bg-light font-medium  p-2 rounded-lg shadow-lg hidden group-hover:block z-50">
+//                   {item.submenu.map((sub, idx) => (
+//                     <li key={idx}>
+//                       <Link href={sub.href} className="block px-4 py-2 link">
+//                         {sub.title}
+//                       </Link>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               )}
+//             </div>
+//           ))}          
+          
+        
+//           {session?.user?.role === 'admin' && (
+//             <Link href="/dashboard" className="link font-medium">DASHBOARD</Link>
+//           )}
+
+          
+
+      
+        
+//       </div>
+      
+//     </nav>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
