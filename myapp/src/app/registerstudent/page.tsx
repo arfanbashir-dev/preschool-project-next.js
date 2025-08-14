@@ -24,7 +24,10 @@ export default function RegisterFunc(){
         setForm({...form, [e.target.name]:e.target.value})
     };
 
-    const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+//   e.preventDefault();
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
         e.preventDefault();
 
