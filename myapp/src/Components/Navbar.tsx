@@ -31,19 +31,17 @@ export default function Navbar() {
           </div>
 
           {/* Search + Login/Logout + Menu Toggle */}
-          <div className="flex items-center gap-4">
+          <div className="flex-center">
             {/* Search Input */}
             <div className="relative hidden lg:block">
-              <input
-                type="text"
-                placeholder="Search"
+              <input  type="text"  placeholder="Search"
                 className="bg-white rounded-md pl-3 pr-10 py-1 text-black focus:outline-none"
               />
               <IoSearch className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-600" />
             </div>
 
             {/* Login/Logout Button */}
-            <div className="flex items-center gap-2">
+            <div className="flex-center gap-3">
               {session?.user ? (
                 <button
                   className="px-4 py-2 text-white font-medium rounded hover:bg-slate-500"
@@ -62,7 +60,7 @@ export default function Navbar() {
 
               {/* Mobile Menu Toggle */}
               <button
-                className="lg:hidden text-white text-2xl"
+                className="lg:hidden text-white text-md"
                 onClick={() => setMenuOpen(!menuOpen)}
               >
                 {menuOpen ? <FaTimes /> : <FaBars />}
