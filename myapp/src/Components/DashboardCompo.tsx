@@ -49,9 +49,8 @@ import {
 type User =    { _id: string; name: string; email: string ; role: string }
 type Staff =   { _id: string; name: string; email: string ; role: string };
 // type Student = { _id: string; name: string; email: string };
-type Student = {  _id: string;  firstname: string;  lastname: string;  date_of_birth: string;
-  grade: string;  gender: string;  myimg: string;
-};
+type Student = {  _id: string;  firstname: string;  lastname: string; 
+                  date_of_birth: string ;   grade: string; gender: string; };
 
 
 type View = 'dashboard' | 'userstableandchart'|'stafftableandchart'|'studenttableandchart'

@@ -53,14 +53,14 @@
 
 'use client';
   //ok
-import Image from 'next/image';
+
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register( BarElement, CategoryScale, LinearScale, Tooltip, Legend ) ;
 
 type Student = {  _id: string;  firstname: string;  lastname: string; 
-                  date_of_birth: string ;   grade: string; gender: string; myimg: '', };
+                  date_of_birth: string ;   grade: string; gender: string; };
 
 
 export default function StudentTableAndChartCompo( { students }: { students: Student[] } ) {
@@ -95,7 +95,7 @@ export default function StudentTableAndChartCompo( { students }: { students: Stu
                   <th className="border table-cell-style ">Date of Birth</th>
                   <th className="border table-cell-style ">Grade</th>
                   <th className="border table-cell-style ">Gender</th>
-                  <th className="border table-cell-style ">Student Image</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -106,12 +106,7 @@ export default function StudentTableAndChartCompo( { students }: { students: Stu
                     <td className="border table-cell-style">{item.date_of_birth}</td>
                     <td className="border table-cell-style">{item.grade}</td>
                     <td className="border table-cell-style">{item.gender}</td>
-                    <td className="border table-cell-style">
-                      {item.myimg ? (
-                        <Image  src={item.myimg}  alt="Student"  width={64}   height={64}  className="object-cover rounded" />
-                      // <img src={item.myimg} alt='image' className="h-16 w-16 object-cover rounded" />
-                      ) : ( 'No Image' )}
-                    </td>
+                    
 
                   </tr>
                 ))}
