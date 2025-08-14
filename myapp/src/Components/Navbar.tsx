@@ -41,7 +41,7 @@ export default function Navbar() {
             </div>
 
             {/* Login/Logout Button */}
-            <div className="flex flex-col  ">
+            <div className="flex-center gap-3">
               {session?.user ? (
                 <button
                   className="px-4 py-2 text-white font-medium rounded hover:bg-slate-500"
@@ -145,14 +145,14 @@ export default function Navbar() {
           )}
 
           {/* Mobile Search */}
-          <div className="flex items-center gap-2 mt-4">
+          {/* <div className="flex items-center gap-2 mt-4">
             <input
               type="text"
               placeholder="Search"
               className="flex-grow px-3 py-1 rounded bg-white text-black focus:outline-none"
             />
             <IoSearch className="text-white text-xl" />
-          </div>
+          </div> */}
 
           {/* Mobile Login/Logout */}
           <div className="mt-4">
