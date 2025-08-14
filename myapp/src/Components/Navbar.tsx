@@ -128,7 +128,7 @@ export default function Navbar() {
                       className="block text-gray-300 py-1"
                       onClick={() => setMenuOpen(false)}
                     >
-                      {sub.title}
+                      {/* {sub.title} */}
                     </Link>
                   ))}
                 </div>
