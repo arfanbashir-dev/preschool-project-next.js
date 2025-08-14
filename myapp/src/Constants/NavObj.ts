@@ -34,8 +34,7 @@ export const navObj:NavItem[] = [
     id: '5', title: 'ADMISSION INFO', href: '',
     submenu: [
       { title: 'Admission Process', href: '/admissionprocess' },
-      { title: 'Apply', href: '/apply' },
-      { title: 'Admission Form', href: '/admissionform' },
+      { title: 'Apply', href: '/apply' },      
       { title: 'Fee', href: '/fee' },
       { title: 'Term Dates', href: '/termdates' },
     ]
