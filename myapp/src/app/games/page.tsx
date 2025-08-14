@@ -21,6 +21,8 @@ export default function GamesFunc(){
                 initial={{ opacity: 0, y: -50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
+                viewport={{ once: false, amount: 0.2 }} 
+                
             >
 
                 <div className="flex-column gap-5 items-center py-1 ">
@@ -35,6 +37,7 @@ export default function GamesFunc(){
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
+                viewport={{ once: false, amount: 0.2 }} 
             >
 
                 <div className="img w-full  p-10 ">
@@ -51,6 +54,7 @@ export default function GamesFunc(){
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
+                viewport={{ once: false, amount: 0.2 }} 
             >
             
 
@@ -78,6 +82,7 @@ export default function GamesFunc(){
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
+                    viewport={{ once: false, amount: 0.2 }} 
                 >
             
                     <h1>Activities for Sports Day</h1>
@@ -100,6 +105,7 @@ export default function GamesFunc(){
                     initial={{ opacity: 0, x: 100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
+                    viewport={{ once: false, amount: 0.2 }} 
                 >
                    
 
@@ -119,6 +125,7 @@ export default function GamesFunc(){
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
+                    viewport={{ once: false, amount: 0.2 }} 
                 >
 
                    

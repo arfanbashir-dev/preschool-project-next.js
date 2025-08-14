@@ -10,8 +10,10 @@ export default function SyllabusPage() {
     <div className="max-w-5xl mx-auto px-6 py-10">
       <motion.h1
         className="text-4xl font-bold  mb-10 text-center"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}                    
+        viewport={{ once: false, amount: 0.2 }} 
       >
         Syllabus Overview
       </motion.h1>
@@ -21,9 +23,10 @@ export default function SyllabusPage() {
           <motion.div
             key={index}
             className="bg-medium shadow-md border-4 border-gray-900 p-6 rounded-xl"
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.2 }}
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}                    
+            viewport={{ once: false, amount: 0.2 }} 
           >
             <h2 className="text-2xl font-semibold  mb-4">
               {item.level}

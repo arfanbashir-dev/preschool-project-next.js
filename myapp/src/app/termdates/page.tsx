@@ -18,8 +18,9 @@ export default function TermsDatesFunc(){
             
             <motion.div className='p-16'
                 initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
+                viewport={{ once: false, amount: 0.2 }} 
             
             >
 
@@ -54,8 +55,9 @@ export default function TermsDatesFunc(){
 
             <motion.div className='p-16'
                 initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
+                viewport={{ once: false, amount: 0.2 }} 
             
             >
                 <h1 className='py-3 font-semibold'>Summer 2025</h1>

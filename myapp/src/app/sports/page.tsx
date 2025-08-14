@@ -28,9 +28,10 @@ export default function SportsFunc(){
 
                 <section className="grid md:grid-cols-2 gap-8">
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 1 }}
+                        viewport={{ once: false, amount: 0.2 }} 
                     >
                         <h2 className="text-2xl font-semibold  py-2 flex items-center gap-2">
                         <GiWhistle className="text-dark" />
@@ -42,7 +43,12 @@ export default function SportsFunc(){
                         <Image src={Img5} alt="Morning Warm-ups"  className="rounded-lg w-96 h-60 shadow-md " />
                     </motion.div>
 
-                    <motion.div   initial={{ opacity: 0, x: 50 }}   whileInView={{ opacity: 1, x: 0 }}  transition={{ duration: 0.5 }}>
+                    <motion.div   
+                        initial={{ opacity: 0, x: 100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1 }}
+                        viewport={{ once: false, amount: 0.2 }} 
+                    >
                         
                         <h2 className="text-2xl font-semibold  py-2 flex items-center gap-2">
                             <GiTrophyCup className="text-dark" />
@@ -58,7 +64,8 @@ export default function SportsFunc(){
                 <motion.section
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: false, amount: 0.2 }} 
                 >
                     <h2 className="text-2xl font-semibold text-dark mb-2 flex items-center gap-2">
                         <GiTrophyCup className="text-dark" />

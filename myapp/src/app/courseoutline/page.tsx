@@ -12,8 +12,11 @@ export default function CourseOutlinePage() {
     <div className="max-w-6xl mx-auto px-6 py-10">
       <motion.h1
         className="text-4xl font-bold  mb-10 text-center"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
+           
+        initial={{ opacity: 0, y: -50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}                    
+        viewport={{ once: false, amount: 0.2 }} 
       >
         Preschool Course Outline
       </motion.h1>
@@ -23,9 +26,10 @@ export default function CourseOutlinePage() {
           <motion.div
             key={index}
             className="bg-dark p-6 shadow-md border-l-4  rounded-xl  "
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.2 }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}                    
+            viewport={{ once: false, amount: 0.2 }} 
           >
             <h2 className="text-2xl font-semibold  mb-3">
               {section.domain}

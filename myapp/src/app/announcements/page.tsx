@@ -10,8 +10,10 @@ export default function AnnouncementPage() {
     <div className="max-w-4xl mx-auto px-6 py-10">
       <motion.h1
         className="text-4xl font-bold text-blue-900 mb-6"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: false, amount: 0.2 }} 
       >
         Important Announcements
       </motion.h1>
@@ -21,9 +23,10 @@ export default function AnnouncementPage() {
           <motion.div
             key={index}
             className="bg-medium border-2 border-blue-500 p-5 rounded-xl shadow-sm"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.2 }}
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: false, amount: 0.2 }} 
           >
             <h2 className="text-lg font-semibold">{item.title}</h2>
             <p className="text-sm  mb-1">{item.date}</p>

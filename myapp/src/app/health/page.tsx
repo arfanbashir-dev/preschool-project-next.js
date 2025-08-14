@@ -39,8 +39,10 @@ export default function HealthPage() {
     <div className="max-w-5xl mx-auto px-6 py-10">
       <motion.h1
         className="text-4xl font-bold text-blue-900 mb-10 text-center"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: false, amount: 0.2 }} 
       >
         Child Health & Wellbeing
       </motion.h1>
@@ -50,9 +52,10 @@ export default function HealthPage() {
           <motion.div
             key={index}
             className="bg-dark shadow-md border-l-4 border-rose-400 p-6 rounded-xl flex items-start gap-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2 }}
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: false, amount: 0.2 }} 
           >
             <div>{item.icon}</div>
             <div>
