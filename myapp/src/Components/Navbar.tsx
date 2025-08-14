@@ -199,9 +199,9 @@ export default function Navbar() {
 
   
   return (
-    <nav className="bg-slate-600  fixed z-10 h-32 w-full">
+    <nav className="bg-slate-600  fixed z-10 h-32 w-full  max-w-screen-xl mx-auto  sm:px-6">
 
-    <div className="max-w-screen-xl mx-auto  sm:px-6 ">
+    {/* <div className=" "> */}
       
       <div className="flex-between">
 
@@ -264,7 +264,7 @@ export default function Navbar() {
         
       </div>
       
-    </div>
+    {/* </div> */}
       
     </nav>
   );
