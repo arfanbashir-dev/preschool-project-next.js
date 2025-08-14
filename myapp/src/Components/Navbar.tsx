@@ -27,7 +27,7 @@ export default function Navbar() {
           {/* Logo + Title */}
           <div className="flex-center">
             <Image src={LogoImg} alt="logo" className="w-24 h-auto" />
-            <span className="text-white font-bold text-lg">Little Genius TechSchool</span>
+            <span className="text-white font-bold text-md">Little Genius TechSchool</span>
           </div>
 
           {/* Search + Login/Logout + Menu Toggle */}
