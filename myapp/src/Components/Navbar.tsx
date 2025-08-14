@@ -201,7 +201,7 @@ export default function Navbar() {
   return (
     <nav className="bg-slate-600  fixed z-10 h-32 w-full">
 
-    <div className="max-w-screen-xl mx-auto  sm:px-6 flex-between h-20">
+    <div className="max-w-screen-xl mx-auto  sm:px-6 ">
       
       <div className="flex-between">
 
