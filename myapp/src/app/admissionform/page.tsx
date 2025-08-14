@@ -1,3 +1,8 @@
+export default function DisabledPage() {
+  return <h1>Admission Form is currently disabled</h1>;
+}
+
+
 // "use client";
 
 // import { useEffect, useState } from "react";
