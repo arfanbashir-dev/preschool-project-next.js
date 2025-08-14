@@ -41,7 +41,7 @@ export default function Navbar() {
             </div>
 
             {/* Login/Logout Button */}
-            <div className="flex-center gap-3">
+            <div className="flex flex-col  ">
               {session?.user ? (
                 <button
                   className="px-4 py-2 text-white font-medium rounded hover:bg-slate-500"
