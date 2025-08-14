@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import LogoImg from '../../public/logopreschool.png';
 import { IoSearch } from "react-icons/io5";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaCaretDown } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { navObj } from '@/Constants/NavObj';
@@ -22,25 +22,34 @@ export default function Navbar() {
   return (
     <nav className="bg-slate-600 fixed z-10 w-full">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
-        
+
         {/* Logo */}
         <div className="flex items-center gap-3">
           <Image src={LogoImg} alt="logo" className="w-16 h-auto" />
-          <span className="text-white font-bold text-lg sm:text-xl">Little Genius TechSchool</span>
+          <span className="text-white font-bold text-lg sm:text-xl whitespace-nowrap">
+            Little Genius TechSchool
+          </span>
         </div>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-6 flex-nowrap">
           {navObj.map((item) => (
             <div key={item.id} className="relative group">
-              <Link href={item.href} className="text-white font-medium hover:text-gray-300">
-                {item.title}
+              <Link
+                href={item.href}
+                className="text-white font-medium hover:text-gray-300 whitespace-nowrap"
+              >
+                {item.title} {item.submenu && <FaCaretDown className="inline ml-1 text-sm" />}
               </Link>
-              {/* Submenu */}
+
               {item.submenu && (
-                <div className="absolute left-0 hidden group-hover:block bg-slate-700 mt-2 rounded shadow-lg">
+                <div className="absolute left-0 hidden group-hover:block bg-slate-700 mt-2 rounded shadow-lg min-w-[150px]">
                   {item.submenu.map((sub, idx) => (
-                    <Link key={idx} href={sub.href} className="block px-4 py-2 text-white hover:bg-slate-600">
+                    <Link
+                      key={idx}
+                      href={sub.href}
+                      className="block px-4 py-2 text-white hover:bg-slate-600"
+                    >
                       {sub.title}
                     </Link>
                   ))}
@@ -56,8 +65,8 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Search (Desktop) */}
-        <div className="hidden md:flex items-center gap-2 relative">
+        {/* Desktop Search */}
+        <div className="hidden lg:flex items-center gap-2 relative">
           <input
             type="text"
             placeholder="Search"
@@ -66,8 +75,8 @@ export default function Navbar() {
           <IoSearch className="absolute right-3 text-gray-600" />
         </div>
 
-        {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Desktop Login/Logout */}
+        <div className="hidden lg:flex items-center gap-4">
           {session?.user ? (
             <button
               className="bg-white text-slate-600 font-bold px-4 py-2 rounded"
@@ -76,24 +85,27 @@ export default function Navbar() {
               LogOut
             </button>
           ) : (
-            <Link href="/loginadmin" className="bg-white text-slate-600 font-bold px-4 py-2 rounded">
+            <Link
+              href="/loginadmin"
+              className="bg-white text-slate-600 font-bold px-4 py-2 rounded"
+            >
               LogIn
             </Link>
           )}
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile/Tablet Hamburger */}
         <button
-          className="md:hidden text-white text-2xl"
+          className="lg:hidden text-white text-2xl"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile/Tablet Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-slate-700 px-4 py-4 space-y-3">
+        <div className="lg:hidden bg-slate-700 px-4 py-4 space-y-3">
           {navObj.map((item) => (
             <div key={item.id}>
               <Link
@@ -130,7 +142,7 @@ export default function Navbar() {
             </Link>
           )}
 
-          {/* Mobile Search */}
+          {/* Mobile/Tablet Search */}
           <div className="flex items-center gap-2 mt-4">
             <input
               type="text"
@@ -140,7 +152,7 @@ export default function Navbar() {
             <IoSearch className="text-white text-xl" />
           </div>
 
-          {/* Mobile Log In/Out */}
+          {/* Mobile/Tablet Login/Logout */}
           <div className="mt-4">
             {session?.user ? (
               <button
