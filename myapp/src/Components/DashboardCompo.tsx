@@ -1,3 +1,32 @@
+// import React from 'react';
+// import UserTableAndChart from './UserTableAndChart';
+// import StaffTableAndChart from './StaffTableAndChart';
+// import StudentTableAndChart from './StudentTableAndChart';
+
+// type Student = {  _id: string;  firstname: string;  lastname: string;  date_of_birth: string;
+//   grade: string;  gender: string;  myimg: string;
+// };
+
+// type User = { _id: string; name: string; email: string };
+// type Staff = { _id: string; name: string; position: string };
+
+// export default function DashboardCompo({ 
+//    view,  users,  staff,  students
+// }: { view: string;  users: User[];  staff: Staff[];  students: Student[];
+// }) {
+//   return (
+//     <div>
+//       {view === 'userstableandchart' && <UserTableAndChart users={users} />}
+//       {view === 'stafftableandchart' && <StaffTableAndChart staff={staff} />}
+//       {view === 'studenttableandchart' && (
+//         <StudentTableAndChart students={students} />
+//       )}
+//     </div>
+//   );
+// }
+
+
+
 'use client'
 
 import React, { useState } from 'react'
@@ -12,14 +41,17 @@ import StudentTableAndChart from './StudentTableAndChart'
 
 
 import { 
-  FaHome, FaUserPlus,   FaTable, FaGraduationCap, 
+  FaHome, FaUserPlus,   FaTable, 
   FaUserTie,  FaChalkboardTeacher,  FaUserGraduate,  FaUserShield,  FaUserCog,  
   FaUserFriends,  FaCogs,  FaUser
 } from 'react-icons/fa';
 
 type User =    { _id: string; name: string; email: string ; role: string }
 type Staff =   { _id: string; name: string; email: string ; role: string };
-type Student = { _id: string; name: string; email: string };
+// type Student = { _id: string; name: string; email: string };
+type Student = {  _id: string;  firstname: string;  lastname: string;  date_of_birth: string;
+  grade: string;  gender: string;  myimg: string;
+};
 
 
 type View = 'dashboard' | 'userstableandchart'|'stafftableandchart'|'studenttableandchart'

@@ -1,3 +1,56 @@
+// import React from 'react';
+
+// type Student = {
+//   _id: string;
+//   firstname: string;
+//   lastname: string;
+//   date_of_birth: string;
+//   grade: string;
+//   gender: string;
+//   myimg: string;
+// };
+
+// export default function StudentTableAndChartCompo({
+//   students
+// }: {
+//   students: Student[];
+// }) {
+//   return (
+//     <div>
+//       <h2>Student Table</h2>
+//       <table>
+//         <thead>
+//           <tr>
+//             <th>Firstname</th>
+//             <th>Lastname</th>
+//             <th>Date of Birth</th>
+//             <th>Grade</th>
+//             <th>Gender</th>
+//             <th>Image</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {students.map((s) => (
+//             <tr key={s._id}>
+//               <td>{s.firstname}</td>
+//               <td>{s.lastname}</td>
+//               <td>{s.date_of_birth}</td>
+//               <td>{s.grade}</td>
+//               <td>{s.gender}</td>
+//               <td>
+//                 <img src={s.myimg} alt="student" width={50} height={50} />
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+
+
+
+
 'use client';
   //ok
 import Image from 'next/image';
@@ -8,6 +61,7 @@ ChartJS.register( BarElement, CategoryScale, LinearScale, Tooltip, Legend ) ;
 
 type Student = {  _id: string;  firstname: string;  lastname: string; 
                   date_of_birth: string ;   grade: string; gender: string; myimg: '', };
+
 
 export default function StudentTableAndChartCompo( { students }: { students: Student[] } ) {
   // Group students by grade
