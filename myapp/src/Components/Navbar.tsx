@@ -25,7 +25,7 @@ export default function Navbar() {
         {/* Top Row */}
         <div className="flex items-center justify-between h-20">
           {/* Logo + Title */}
-          <div className="flex items-center gap-3">
+          <div className="flex-center">
             <Image src={LogoImg} alt="logo" className="w-24 h-auto" />
             <span className="text-white font-bold text-lg">Little Genius TechSchool</span>
           </div>
