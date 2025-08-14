@@ -33,7 +33,7 @@ export default function SportsFunc(){
                         transition={{ duration: 1 }}
                         viewport={{ once: false, amount: 0.2 }} 
                     >
-                        <h2 className="text-2xl font-semibold  py-2 flex items-center gap-2">
+                        <h2 className="text-2xl text-green-500 font-semibold  py-2 flex items-center gap-2">
                         <GiWhistle className="text-dark" />
                         Daily Physical Activities
                         </h2>
@@ -50,7 +50,7 @@ export default function SportsFunc(){
                         viewport={{ once: false, amount: 0.2 }} 
                     >
                         
-                        <h2 className="text-2xl font-semibold  py-2 flex items-center gap-2">
+                        <h2 className="text-2xl text-green-500 font-semibold  py-2 flex items-center gap-2">
                             <GiTrophyCup className="text-dark" />
                             Outdoor Sports Fun
                         </h2>
@@ -67,7 +67,7 @@ export default function SportsFunc(){
                     transition={{ duration: 1 }}
                     viewport={{ once: false, amount: 0.2 }} 
                 >
-                    <h2 className="text-2xl font-semibold text-dark mb-2 flex items-center gap-2">
+                    <h2 className="text-2xl text-green-500 font-semibold text-dark mb-2 flex items-center gap-2">
                         <GiTrophyCup className="text-dark" />
                         Annual Sports Day
                     </h2>
