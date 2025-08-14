@@ -28,7 +28,7 @@
 module.exports = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/Components/**/*.{js,ts,jsx,tsx}',
     './src/style/**/*.{js,ts,jsx,tsx}', // Add this if you keep CSS in src/style
   ],
   theme: {
