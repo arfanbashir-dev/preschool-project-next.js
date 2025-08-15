@@ -16,6 +16,10 @@ export default function StudentForm() {
 
   };
 
+//     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+//     setForm({ ...form, [e.target.name]: e.target.value });
+//   };
+
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -51,6 +55,24 @@ export default function StudentForm() {
     <div className="p-32 border rounded-lg shadow-lg ">
       <h1 className="text-2xl font-bold mb-4">Add Student</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
+
+        <div className="img-container w-64 h-64 ">
+
+            <input   type="file"   accept="image/*"
+             onChange={handleImageChange}  className="w-full border p-2 rounded"
+          
+            />
+
+        {/* Image Preview */}
+        {preview && (
+          <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded border"
+          />
+        )}
+
+
+        </div>
+
+
         <input  name="name"  value={form.name}
           onChange={handleChange} required
           placeholder="Name"   className="w-full border p-2 rounded"
@@ -71,20 +93,11 @@ export default function StudentForm() {
           <option value="Grade 1">Grade 1</option>
           <option value="Grade 2">Grade 2</option>
           <option value="Grade 3">Grade 3</option>
+        
         </select>
 
-        {/* Image Upload */}
-        <input   type="file"   accept="image/*"
-          onChange={handleImageChange}  className="w-full border p-2 rounded"
-          
-        />
-
-        {/* Image Preview */}
-        {preview && (
-          <img   src={preview}   alt="Preview"
-            className="w-32 h-32 object-cover rounded border"
-          />
-        )}
+        
+        
 
         <button  type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
