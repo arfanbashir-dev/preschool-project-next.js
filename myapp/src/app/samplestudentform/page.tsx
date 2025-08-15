@@ -14,7 +14,7 @@ export default function StudentForm() {
     e.preventDefault();
     setMessage("");
 
-    const res = await fetch("/api/students", {
+    const res = await fetch("/api/samplestudent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
@@ -30,7 +30,7 @@ export default function StudentForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow-lg">
+    <div className="max-w-md mx-auto mt-10 p-32 border rounded-lg shadow-lg ">
       <h1 className="text-2xl font-bold mb-4">Add Student</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
