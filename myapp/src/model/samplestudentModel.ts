@@ -32,7 +32,7 @@ const studentSchema = new Schema<IStudent>(
       required: false,
     },
   },
-  { collection: "samplestudentrecord" }
+  { collection: "studentrecord" }
 );
 
 export default mongoose.models.StudentModel ||  mongoose.model<IStudent>("StudentModel", studentSchema);
