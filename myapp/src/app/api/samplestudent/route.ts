@@ -2,9 +2,10 @@ import { connectDB } from "@/lib/mongoose";
 import StudentModel from "@/model/samplestudentModel";
 import { NextRequest, NextResponse } from "next/server";
 
+// ================== CREATE STUDENT ==================
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json();
+    const data = await req.json(); // expects { name, fatherName, grade, image }
     await connectDB();
     const student = await StudentModel.create(data);
     return NextResponse.json(student, { status: 201 });
@@ -16,6 +17,43 @@ export async function POST(req: NextRequest) {
   }
 }
 
+// ================== GET ALL STUDENTS ==================
+export async function GET() {
+  try {
+    await connectDB();
+    const students = await StudentModel.find({});
+    return NextResponse.json(students, { status: 200 });
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      return NextResponse.json({ error: err.message }, { status: 500 });
+    }
+    return NextResponse.json({ error: "Unknown error" }, { status: 500 });
+  }
+}
+
+// ================== UPDATE STUDENT ==================
+export async function PUT(req: NextRequest) {
+  try {
+    const { id, ...updateData } = await req.json(); // expects { id, name, fatherName, grade, image }
+    if (!id) {
+      return NextResponse.json({ error: "Student ID is required" }, { status: 400 });
+    }
+
+    await connectDB();
+    const updatedStudent = await StudentModel.findByIdAndUpdate(id, updateData, { new: true });
+
+    if (!updatedStudent) {
+      return NextResponse.json({ error: "Student not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(updatedStudent, { status: 200 });
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      return NextResponse.json({ error: err.message }, { status: 400 });
+    }
+    return NextResponse.json({ error: "Unknown error" }, { status: 400 });
+  }
+}
 
 
 
@@ -25,9 +63,9 @@ export async function POST(req: NextRequest) {
 
 // export async function POST(req: NextRequest) {
 //   try {
-//     const body = await req.json();
+//     const data = await req.json();
 //     await connectDB();
-//     const student = await StudentModel.create(body);
+//     const student = await StudentModel.create(data);
 //     return NextResponse.json(student, { status: 201 });
 //   } catch (err: unknown) {
 //     if (err instanceof Error) {
@@ -36,3 +74,7 @@ export async function POST(req: NextRequest) {
 //     return NextResponse.json({ error: "Unknown error" }, { status: 400 });
 //   }
 // }
+
+
+
+
