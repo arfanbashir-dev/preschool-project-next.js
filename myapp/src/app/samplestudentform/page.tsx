@@ -56,18 +56,19 @@ export default function StudentForm() {
       <h1 className="text-2xl font-bold mb-4">Add Student</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
 
-        <div className="img-container w-64 h-64 ">
+        <div className="img-container w-64 h-64 border-4">
 
+            {/* Image Preview */}
+            {preview && (
+                <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded border"
+                />
+            )}
             <input   type="file"   accept="image/*"
              onChange={handleImageChange}  className="w-full border p-2 rounded"
           
             />
 
-        {/* Image Preview */}
-        {preview && (
-          <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded border"
-          />
-        )}
+        
 
 
         </div>
