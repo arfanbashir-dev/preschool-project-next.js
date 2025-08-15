@@ -1,55 +1,3 @@
-// import mongoose, { Schema, Document, Model } from 'mongoose';
-
-// export interface IAdmission extends Document {
-//   myimg: string;
-//   firstname: string;
-//   lastname: string;
-//   date_of_birth: string;
-//   grade: string;
-//   gender: string;
-//   religion: string;
-//   language: string;
-//   address: string;
-//   fathername: string;
-//   mothername: string;
-//   father_contact: string;
-//   mother_contact: string;
-//   father_nicn: string;
-//   mother_nicn: string;
-//   father_occupation: string;
-//   job_degination: string;
-// }
-
-// const admissionSchema = new Schema<IAdmission>(
-//   {
-//     myimg: { type: String, required: false },
-//     firstname: { type: String, required: true },
-//     lastname: { type: String, required: true },
-//     date_of_birth: { type: String, required: true },
-//     grade: { type: String, required: true, enum: ['preschool', 'reception', 'preprep', 'prep'] },
-//     gender: { type: String, required: true, enum: ['male', 'female'] },
-//     religion: { type: String, required: true },
-//     language: { type: String, required: true },
-//     address: { type: String, required: true },
-//     fathername: { type: String, required: true },
-//     mothername: { type: String, required: true },
-//     father_contact: { type: String, required: true },
-//     mother_contact: { type: String, required: true },
-//     father_nicn: { type: String, required: true },
-//     mother_nicn: { type: String, required: true },
-//     father_occupation: { type: String, required: true },
-//     job_degination: { type: String, required: true },
-//   },
-//   { timestamps: true, collection: 'reception' } // Fixed collection name
-// );
-
-// // Create single model instead of dynamic models
-// const AdmissionModel = mongoose.models.Admission || 
-//   mongoose.model<IAdmission>('Admission', admissionSchema);
-
-// export default AdmissionModel;
-
-
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
 export interface IAdmission extends Document {
@@ -69,7 +17,7 @@ export interface IAdmission extends Document {
   father_nicn: string;
   mother_nicn: string;
   father_occupation: string;
-  job_degination: string;
+  job_designation: string;
 }
 
 // Base schema for all grades
@@ -91,7 +39,7 @@ const admissionSchema = new Schema<IAdmission>(
     father_nicn: { type: String, required: true },
     mother_nicn: { type: String, required: true },
     father_occupation: { type: String, required: true },
-    job_degination: { type: String, required: true },
+    job_designation: { type: String, required: true },
   },
   { timestamps: true }
 );
