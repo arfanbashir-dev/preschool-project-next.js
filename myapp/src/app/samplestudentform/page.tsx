@@ -30,7 +30,7 @@ export default function StudentForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto  p-32 border rounded-lg shadow-lg ">
+    <div className="p-32 border rounded-lg shadow-lg ">
       <h1 className="text-2xl font-bold mb-4">Add Student</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input

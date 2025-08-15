@@ -7,8 +7,12 @@ export default function ContactPage() {
   return (
       <div className='pt-32 bg-light'>
           <div className="max-w-5xl mx-auto px-6 py-10">
-              <motion.h1 initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }}
-                className="text-4xl font-bold text-dark mb-8 text-center"    
+              <motion.h1  className="text-4xl font-bold text-dark mb-8 text-center"    
+                initial={{ opacity: 0, y: -100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: false, amount: 0.2 }} 
+                
         
           >
           Contact Us
@@ -16,8 +20,12 @@ export default function ContactPage() {
 
             <div className="grid md:grid-cols-2 gap-10">
             {/* Contact Info */}
-            <motion.div  initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }}
-            className="space-y-6"
+            <motion.div   className="space-y-6"
+              initial={{ opacity: 0, x: -100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: false, amount: 0.2 }} 
+            
           
           
           >
@@ -55,10 +63,11 @@ export default function ContactPage() {
         {/* Contact Form */}
         <motion.form
           className="space-y-4 bg-blue-50 p-6 rounded-xl shadow-sm"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          onSubmit={(e) => {
-            e.preventDefault();
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: false, amount: 0.2 }} 
+          onSubmit={(e) => {   e.preventDefault();
             alert('Message submitted!');
           }}
         >
