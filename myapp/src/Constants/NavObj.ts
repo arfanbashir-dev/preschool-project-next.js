@@ -26,6 +26,7 @@ export const navObj:NavItem[] = [
   {
     id: '4', title: 'INFORMATION', href: '', 
     submenu: [
+      { title: 'Sample Student Record', href: '/showsamplestudentrecord' },
       { title: 'News Updates', href: '/news' },
       { title: 'Annoucements', href: '/announcements' }
     ]
