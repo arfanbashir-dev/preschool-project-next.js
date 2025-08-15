@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { IStudent } from "@/model/samplestudentModel";
+import { IStudent } from "@/types/datatype";
 
 export default function ShowStudents() {
   const [students, setStudents] = useState<IStudent[]>([]);
@@ -32,9 +32,7 @@ export default function ShowStudents() {
         {students.map((record) => (
           <div key={record._id} className="border rounded p-4 shadow">
             {record.image && (
-              <img
-                src={record.image}
-                alt={record.name}
+              <img  src={record.image}    alt={record.name}
                 className="w-full h-40 object-cover rounded mb-2"
               />
             )}

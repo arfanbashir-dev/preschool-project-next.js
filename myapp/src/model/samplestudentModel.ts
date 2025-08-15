@@ -1,12 +1,6 @@
 import mongoose, { Schema } from "mongoose";
+import { IStudent } from "@/types/datatype";
 
-export interface IStudent  {
-  _id?: string;
-  name: string;
-  fatherName: string;
-  grade: string;
-  image?: string;
-}
 
 const studentSchema = new Schema<IStudent>(
   {
