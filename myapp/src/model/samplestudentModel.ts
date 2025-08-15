@@ -18,6 +18,8 @@ const studentSchema = new mongoose.Schema({
     required: [true, "Grade is required"],
     enum: ["Preschool", "Grade 1", "Grade 2", "Grade 3"], // example
   },
-});
+},
+{ collection: "samplestudentrecord " }
+);
 
 export default mongoose.models.StudentModel || mongoose.model("StudentModel", studentSchema);
