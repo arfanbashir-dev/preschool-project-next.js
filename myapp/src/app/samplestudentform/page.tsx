@@ -3,6 +3,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 
 export default function StudentForm() {
+  
   const [form, setForm] = useState({ name: "", fatherName: "", grade: "",  image: "",  });
 
   const [preview, setPreview] = useState<string | null>(null);
@@ -32,24 +33,24 @@ export default function StudentForm() {
         }
     };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => { e.preventDefault();
-    setMessage("");
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => { e.preventDefault();
+      setMessage("");
 
-    const res = await fetch("/api/samplestudent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+      const res = await fetch("/api/samplestudent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-    if (res.ok) {
-      setMessage("✅ Student added successfully!");
-      setForm({ name: "", fatherName: "", grade: "", image: "" });
-      setPreview(null);
-    } else {
-      const data = await res.json();
-      setMessage(`❌ Error: ${data.error}`);
-    }
-  };
+      if (res.ok) {
+        setMessage("✅ Student added successfully!");
+        setForm({ name: "", fatherName: "", grade: "", image: "" });
+        setPreview(null);
+      } else {
+        const data = await res.json();
+        setMessage(`❌ Error: ${data.error}`);
+      }
+    };
 
   return (
     <div className="p-32 border rounded-lg shadow-lg ">
@@ -66,9 +67,7 @@ export default function StudentForm() {
             <input   type="file"   accept="image/*"
              onChange={handleImageChange}  className="w-full border p-2 rounded"
           
-            />
-
-        
+            />     
 
 
         </div>

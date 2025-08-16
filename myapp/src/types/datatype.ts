@@ -5,3 +5,25 @@ export interface IStudent  {
   grade: string;
   image?: string;
 }
+
+
+export interface IAdmission {
+  id?: string;
+  img: string;
+  firstname: string;
+  lastname: string;
+  date_of_birth: string;
+  grade: string;
+  gender: string;
+  religion: string;
+  language: string;
+  address: string;
+  fathername: string;
+  mothername: string;
+  father_contact: string;
+  mother_contact: string;
+  father_nicn: string;
+  mother_nicn: string;
+  father_occupation: string;
+  job_designation: string;
+}
