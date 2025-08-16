@@ -18,15 +18,23 @@ export async function POST(req: NextRequest) {
 }
 
 // ================== GET ALL STUDENTS ==================
-export async function GET() {
-  try {
-    await connectDB();
-    const students = await AdmissionStudentModel.find({});
+
+
+export async function GET(req: NextRequest) {
+  try { await connectDB();
+
+    // Extract grade from query (?grade=prep)
+    const { searchParams } = new URL(req.url);
+
+    const grade = searchParams.get("grade");
+
+    let students;
+    if (grade) { students = await AdmissionStudentModel.find({ grade }); }
+    else { students = await AdmissionStudentModel.find({});  }
+
     return NextResponse.json(students, { status: 200 });
   } catch (err: unknown) {
-    if (err instanceof Error) {
-      return NextResponse.json({ error: err.message }, { status: 500 });
-    }
+    if (err instanceof Error) { return NextResponse.json({ error: err.message }, { status: 500 }); }
     return NextResponse.json({ error: "Unknown error" }, { status: 500 });
   }
 }

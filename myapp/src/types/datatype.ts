@@ -8,7 +8,7 @@ export interface IStudent  {
 
 
 export interface IAdmission {
-  id?: string;
+  _id?: string;
   img: string;
   firstname: string;
   lastname: string;

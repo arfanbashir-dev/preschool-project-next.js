@@ -23,7 +23,7 @@ export default function ShowStudents() {
     fetchStudents();
   }, []);
 
-  if (loading) return <p className="p-4">Loading...</p>;
+  if (loading) return <p className="p-32">Loading...</p>;
 
   return (
     <div className="p-32">
