@@ -34,6 +34,7 @@ export const navObj:NavItem[] = [
   {
     id: '5', title: 'ADMISSION INFO', href: '',
     submenu: [
+      { title: 'Admission Student Form', href: '/admissionstudentform' },      
       { title: 'Sample Student Form', href: '/samplestudentform' },      
       { title: 'Admission Process', href: '/admissionprocess' },
       { title: 'Apply', href: '/apply' },      
