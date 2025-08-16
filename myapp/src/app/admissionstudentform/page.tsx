@@ -163,7 +163,7 @@ export default function AdmissionForm() {
                                 <label htmlFor="grade" className="w-44 font-bold">Grade</label>
                                 <select  id="grade" name="grade"  className="w-96" 
                                     value={form.grade} onChange={handleChange} >
-                                    <option  disabled>Select your class </option>
+                                    <option value=""  disabled>Select your class </option>
                                     <option value="preschool">Pre School</option>
                                     <option value="reception">Reception</option>
                                     <option value="preprep">Pre Prep</option>
