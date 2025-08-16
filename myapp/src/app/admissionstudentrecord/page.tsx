@@ -51,9 +51,9 @@ export default function ShowStudents() {
           {students.map((record) => (
             <div
               key={record._id}
-              className="border rounded p-4 shadow bg-white"
+              className="border rounded p-4 shadow bg-medium"
             >
-              <h2 className="font-bold text-lg">
+              <h2 className="font-bold ">
                 {record.firstname} {record.lastname}
               </h2>
               <p>Grade: {record.grade}</p>
