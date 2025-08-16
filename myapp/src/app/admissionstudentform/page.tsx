@@ -354,7 +354,7 @@ export default function AdmissionForm() {
                             </div>
                             <div className="flex-column">
                                 <label htmlFor="job-designation" className="w-44 font-bold">Job Designation</label>
-                                <input id="job-designation" type="text" name='job_degination' 
+                                <input id="job-designation" type="text" name='job_designation' 
                                     value={form.job_designation}  className="w-96"
                                     placeholder=""
                                     onChange={handleChange} 
