@@ -37,7 +37,7 @@ import Card from './Card'
 
 import UserTableAndChart from './UserTableAndChart'
 import StaffTableAndChart from './StaffTableAndChart'
-import StudentTableAndChart from './StudentTableAndChart'
+// import StudentTableAndChart from './StudentTableAndChart'
 
 
 import { 
@@ -49,17 +49,17 @@ import {
 type User =    { _id: string; name: string; email: string ; role: string }
 type Staff =   { _id: string; name: string; email: string ; role: string };
 // type Student = { _id: string; name: string; email: string };
-type Student = {  _id: string;  firstname: string;  lastname: string; 
-                  date_of_birth: string ;   grade: string; gender: string; };
+// type Student = {  _id: string;  firstname: string;  lastname: string; 
+//                   date_of_birth: string ;   grade: string; gender: string; };
 
 
-type View = 'dashboard' | 'userstableandchart'|'stafftableandchart'|'studenttableandchart'
+type View = 'dashboard' | 'userstableandchart'|'stafftableandchart'
 
 
 
 export default function Dashboard(
 
-  {users, staff, students,}: { users: User[]; staff: Staff[]; students: Student[]; }) {
+  {users, staff, }: { users: User[]; staff: Staff[]; }) {
   
   const [view, setView] = useState<View>('dashboard') // default view
 
@@ -114,10 +114,10 @@ export default function Dashboard(
           </button>
            */}
 
-          <button className="link w-56 flex items-center gap-2  border-none" 
+          {/* <button className="link w-56 flex items-center gap-2  border-none" 
             onClick={() => setView('studenttableandchart')}>
             <FaTable/> Student Table And Chart
-          </button>          
+          </button>           */}
 
           {/* <button className="link w-56 flex items-center gap-2  border-none" >
             <Link className="flex items-center gap-2" href="/editadmissionstudentrecord"><FaGraduationCap /> Edit Students Record</Link>
@@ -141,14 +141,14 @@ export default function Dashboard(
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               <Card icon={<FaChalkboardTeacher />} title="Senior Teachers" value="50" />
               <Card icon={<FaUser />} title="Teacher" value='100' />              
-              <Card icon={<FaUserGraduate />} title="Students" value={students.length.toString()} />
+              {/* <Card icon={<FaUserGraduate />} title="Students" value={students.length.toString()} /> */}
               <Card icon={<FaCogs />} title="Settings" value="10" />
             </div>
           </>      
         
         {view === 'userstableandchart'   && <UserTableAndChart  users={users} />}
         {view === 'stafftableandchart'   && <StaffTableAndChart staff={staff} />}
-        {view === 'studenttableandchart' && <StudentTableAndChart students={students} />}
+        {/* {view === 'studenttableandchart' && <StudentTableAndChart students={students} />} */}
         
 
       </div>
