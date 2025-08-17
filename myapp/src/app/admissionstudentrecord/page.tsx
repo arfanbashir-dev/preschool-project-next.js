@@ -2,14 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { IAdmission } from "@/types/datatype";
+import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation';
 
 export default function ShowStudents() {
 
   const [students, setStudents] = useState<IAdmission[]>([]);
   const [grade, setGrade] = useState("preschool"); // default filter
   const [loading, setLoading] = useState(false);
+  const { status } = useSession();
+  const router = useRouter();
 
-  useEffect(() => {
+  
+
+  useEffect(() => { if (status === 'unauthenticated') { router.push('/loginadmin');  return;}
     
     const fetchStudents = async () => {
             setLoading(true);
@@ -24,7 +30,7 @@ export default function ShowStudents() {
             }
         };
         fetchStudents();  
-    }, [grade] );
+    }, [grade,status,router] );
   
 
   

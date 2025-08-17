@@ -1,7 +1,7 @@
 // import '@/style/page.module.css';
 import '../style/globals.css';
 import Navbar from '@/Components/Navbar';
-import FooterFunc from '../Components/Footer';
+import Footer from '../Components/Footer';
 import SessionWrapper from '@/Components/SessionWrapper'; // ✅ import wrapper
 
 
@@ -19,7 +19,7 @@ export default function RootLayout ({ children }: { children: React.ReactNode })
         <main className="w-full h-full">
             {children}
           </main>
-        <FooterFunc />
+        <Footer />
         </SessionWrapper>
       </body>
     </html>
