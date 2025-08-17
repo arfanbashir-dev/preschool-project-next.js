@@ -34,7 +34,7 @@ import Link from 'next/link'
 
 import Card from './Card'
 
-
+import { IUser } from '@/types/datatype'; 
 import UserTableAndChart from './UserTableAndChart'
 import StaffTableAndChart from './StaffTableAndChart'
 // import StudentTableAndChart from './StudentTableAndChart'
@@ -46,7 +46,8 @@ import {
   FaUserFriends,  FaCogs,  FaUser
 } from 'react-icons/fa';
 
-type User =    { _id: string; name: string; email: string ; role: string }
+
+// type User =    { _id: string; name: string; email: string ; role: string }
 type Staff =   { _id: string; name: string; email: string ; role: string };
 // type Student = { _id: string; name: string; email: string };
 // type Student = {  _id: string;  firstname: string;  lastname: string; 
@@ -59,7 +60,7 @@ type View = 'dashboard' | 'userstableandchart'|'stafftableandchart'
 
 export default function Dashboard(
 
-  {users, staff, }: { users: User[]; staff: Staff[]; }) {
+  {users, staff, }: { users: IUser[]; staff: Staff[]; }) {
   
   const [view, setView] = useState<View>('dashboard') // default view
 
