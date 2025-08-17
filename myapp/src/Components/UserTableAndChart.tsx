@@ -2,12 +2,12 @@
 
 import { Bar } from 'react-chartjs-2';   //ok
 import { Chart as ChartJS,  BarElement,  CategoryScale,  LinearScale,  Tooltip,  Legend,} from 'chart.js';
-
+import { IUser } from '@/types/datatype'; 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-type User = { _id: string; name: string; email: string; role: string };
+// type User = { _id: string; name: string; email: string; role: string };
 
-export default function UserTableAndChart({ users }: { users: User[] }) {
+export default function UserTableAndChart({ users }: { users: IUser[] }) {
   
   const roleCounts: Record<string, number> = {};
   users.forEach((user) => { roleCounts[user.role] = (roleCounts[user.role] || 0) + 1;  });
