@@ -53,21 +53,19 @@
 
 'use client';
   //ok
-
+import {IAdmission} from '@/types/datatype'
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register( BarElement, CategoryScale, LinearScale, Tooltip, Legend ) ;
 
-type Student = {  _id: string;  firstname: string;  lastname: string; 
-                  date_of_birth: string ;   grade: string; gender: string; };
 
 
-export default function StudentTableAndChartCompo( { students }: { students: Student[] } ) {
+export default function StudentTableAndChartCompo( { students }: { students: IAdmission[] } ) {
   // Group students by grade
     const gradeCounts: Record<string, number> = {};
     
-    students.forEach((student) => { gradeCounts[student.grade] = (gradeCounts[student.grade] || 0) + 1;});
+    students.forEach((record) => { gradeCounts[record.grade] = (gradeCounts[record.grade] || 0) + 1;});
 
     const chartData = {
       labels: Object.keys(gradeCounts),

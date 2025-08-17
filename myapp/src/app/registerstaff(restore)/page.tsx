@@ -1,12 +1,10 @@
-export default function Tesing(){
-  return (
+export default function Testing(){
+  return(
     <div>
-      <h1>Testing </h1>
+      <h1>Testing</h1>
     </div>
   )
 }
-
-
 
 
 // // ✅ Remove "use client"

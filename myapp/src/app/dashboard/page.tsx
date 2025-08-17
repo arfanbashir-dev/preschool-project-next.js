@@ -6,7 +6,7 @@ import { isAllowed } from '@/lib/roleCheck';
 import { connectDB } from '@/lib/mongoose';
 import UserModel from '@/model/User';
 // import staffroleModel from '@/model/staffroleModel';
-// import AdmissionStudentModel  from '@/model/admissionModel';
+import AdmissionStudentModel  from '@/model/admissionModel';
 import Dashboard from '@/Components/DashboardCompo';
 import MotionWrapper from '@/Components/MotionWrapper';
 import getStaffModel from "@/model/staffroleModel";
@@ -33,16 +33,12 @@ export default async function DashboardPage() {
     const staff = await model.find().lean();
     allStaff.push(...staff);
   }
-
   
-  // const grades = ['preschool', 'reception','preprep', 'prep']; // Cu
-  // const allStudents = [];
+  const allstudents = await AdmissionStudentModel.find().lean();
+    // const model = AdmissionStudentModel;
+    // const allstudents = await model.find().lean();
+    
   
-  // for (const grade of grades) {
-  //   const model = AdmissionStudentModel(grade);
-  //   const students = await model.find().lean();
-  //   allStudents.push(...students);
-  // }
 
 
   return (
@@ -51,7 +47,7 @@ export default async function DashboardPage() {
         <Dashboard
           users={JSON.parse(JSON.stringify(users))}
           staff={JSON.parse(JSON.stringify(allStaff))}
-          // students={JSON.parse(JSON.stringify(allStudents))}
+          students={JSON.parse(JSON.stringify(allstudents))}
           // students={JSON.parse(JSON.stringify(allStudents))}
         />
       </MotionWrapper>

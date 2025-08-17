@@ -1,13 +1,14 @@
 'use client';
 
+import {IStaff} from '@/types/datatype'
 import { Bar } from 'react-chartjs-2';  //ok
 import { Chart as ChartJS,  BarElement,  CategoryScale,  LinearScale,  Tooltip,  Legend,} from 'chart.js';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-type Staff = { _id: string; name: string; email: string; role: string };
 
-export default function StaffTableAndChart({ staff }: { staff: Staff[] }) {
+
+export default function StaffTableAndChart({ staff }: { staff: IStaff[] }) {
   
   const roleCounts: Record<string, number> = {};
   staff.forEach((staff) => { roleCounts[staff.role] = (roleCounts[staff.role] || 0) + 1;  });
