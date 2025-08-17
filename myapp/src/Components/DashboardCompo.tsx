@@ -42,7 +42,7 @@ import StudentTableAndChart from './StudentTableAndChart'
 
 
 import { 
-  FaHome, FaUserPlus,   FaTable, 
+  FaHome, FaUserPlus,   FaTable, FaGraduationCap,
   FaUserTie,  FaChalkboardTeacher,  FaUserGraduate,  FaUserShield,  FaUserCog,  
   FaUserFriends,  FaCogs,  FaUser
 } from 'react-icons/fa';
@@ -106,10 +106,10 @@ export default function Dashboard(
           </button>
           
           
-          {/* <button className="link w-56 flex items-center gap-2  border-none" >
-            <Link className="link flex-center gap-2" href="/gradewisestudentview"><FaGraduationCap/>Gradewise Students View</Link>
+          <button className="link w-56 flex items-center gap-2  border-none" >
+            <Link className="link flex-center gap-2" href="/admissionrecord"><FaGraduationCap/>Gradewise Students View</Link>
           </button>
-           */}
+          
 
           <button className="link w-56 flex items-center gap-2  border-none" 
             onClick={() => setView('studenttableandchart')}>
