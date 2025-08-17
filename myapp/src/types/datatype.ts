@@ -6,9 +6,9 @@ export interface IStaff{
    _id?: string; name: string; email: string; role: string 
 }
 
-// export interface IStudent  {
-//   _id?: string;  name: string;  fatherName: string;  grade: string;  image?: string;
-// }
+export interface IStudent  {
+  _id?: string;  name: string;  fatherName: string;  grade: string;  image?: string;
+}
 
 
 export interface IAdmission {
