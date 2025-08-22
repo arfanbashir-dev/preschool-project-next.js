@@ -1,39 +1,29 @@
 'use client';
+
 import { useState, ChangeEvent, FormEvent } from "react";
 import Image from 'next/image';
 import Link from "next/link";
 
 export default function AdmissionForm() {
   
+    const [message, setMessage] = useState('');
+
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+
     const [form, setForm] = useState({ 
         firstname: '',   lastname: '',    date_of_birth: '',     grade: '',   img: '',    
         gender: '',      religion: '',    language: '',          address: '',
         fathername: '',  mothername: '',  father_contact: '',    mother_contact: '', 
         father_nicn: '', mother_nicn: '', father_occupation: '', job_designation: '',
     });
-  
-  
-    const [imagePreview, setImagePreview] = useState<string | null>(null);
-    const [message, setMessage] = useState('');
-  
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+
+    const handleChange = ( e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {  
+        // if (!form) return;
         const { name, value } = e.target;
-        setForm( ({ ...form, [name]: value }));
+        setForm({ ...form, [name]: value });
     };
 
-    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     
-      const file = e.target.files?.[0];
-      if(file){
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setForm({ ...form, img: reader.result as string });
-                setImagePreview(reader.result as string);
-            };
-            reader.readAsDataURL(file);
-        }    
-    }
-  
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => { e.preventDefault();
         
@@ -41,27 +31,50 @@ export default function AdmissionForm() {
     
         try {
             const res = await fetch('/api/admissionstudent', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(form),
-          });
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(form),
+            });
 
-          const data = await res.json();
+            const data = await res.json();
 
-          if (!res.ok) throw new Error(data.message || 'Failed to submit form');
+            if (!res.ok) throw new Error(data.message || 'Failed to submit form');
 
-          setMessage('Student added successfully!');
-          setForm({ 
-            firstname: '',    lastname: '',     date_of_birth: '',      grade: '',  img: '',    
-            gender: '',       religion: '',     language: '',           address: '',
-            fathername: '',   mothername: '',   father_contact: '',     mother_contact: '', 
-            father_nicn: '',  mother_nicn: '',  father_occupation: '',  job_designation: '',
-          });
+            setMessage('Student added successfully!');
+            setForm({ 
+              firstname: '',    lastname: '',     date_of_birth: '',      grade: '',  img: '',    
+              gender: '',       religion: '',     language: '',           address: '',
+              fathername: '',   mothername: '',   father_contact: '',     mother_contact: '', 
+              father_nicn: '',  mother_nicn: '',  father_occupation: '',  job_designation: '',
+            });
+
           setImagePreview(null);
         } catch (error) {
           setMessage(error instanceof Error ? error.message : 'An error occurred');
         }
     };
+  
+    
+
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    
+      const file = e.target.files?.[0];
+      if(file){
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64 = reader.result as string;
+                setForm({ ...form, img: base64 });
+                setImagePreview(base64);
+            };
+            reader.readAsDataURL(file);
+        }    
+    }
+
+    
+     
+  
+
+    
 
     return( 
 

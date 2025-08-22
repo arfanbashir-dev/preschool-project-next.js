@@ -11,7 +11,7 @@ const feeData = [
 
   { session: "5 Session (minimum requirment)", fee: "5000" },
   { session: "6 Session", fee: "6000" },
-  { session: "7 Session", fee: "7000" },
+  { session: "7 Sess    ion", fee: "7000" },
   { session: "8 Session", fee: "8000" },
   { session: "9 Session", fee: "9000" },
 ];

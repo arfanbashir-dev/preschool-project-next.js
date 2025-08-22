@@ -17,7 +17,7 @@ async function createUser() {
   const password = 'admin123';
   const role = 'admin';
 
-  const existingUser = await User.findOne({ email });
+  const existingUser = await User.findOne({ email }).exec();
   if (existingUser) {
     console.log('❗ User already exists');
     return;

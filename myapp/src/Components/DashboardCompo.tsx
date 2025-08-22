@@ -107,7 +107,10 @@ export default function Dashboard(
           
           
           <button className="link w-56 flex items-center gap-2  border-none" >
-            <Link className="link flex-center gap-2" href="/admissionrecord"><FaGraduationCap/>Gradewise Students View</Link>
+            <Link className="link flex-center gap-2" href="/admissionrecord"><FaGraduationCap/>Admission Students Record</Link>
+          </button>
+          <button className="link w-56 flex items-center gap-2  border-none" >
+            <Link className="link flex-center gap-2" href="/admissionstudentrecord"><FaGraduationCap/>Gradewise Students Record</Link>
           </button>
           
 
@@ -116,11 +119,14 @@ export default function Dashboard(
             <FaTable/> Student Table And Chart
           </button>          
 
-          {/* <button className="link w-56 flex items-center gap-2  border-none" >
-            <Link className="flex items-center gap-2" href="/editadmissionstudentrecord"><FaGraduationCap /> Edit Students Record</Link>
-          </button>  */}
+          <button className="link w-56 flex items-center gap-2  border-none" >
+            <Link className="flex items-center gap-2" href="/admissionstudentrecordedit"><FaGraduationCap /> Edit Students Record</Link>
+          </button> 
 
-          
+          <button className="link w-56 flex items-center gap-2  border-none" >
+            <Link className="flex items-center gap-2" href="/admissionstudentrecordedit2"><FaGraduationCap /> Edit Students Record 2</Link>
+          </button> 
+
 
         </div>
 
