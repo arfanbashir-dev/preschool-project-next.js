@@ -51,7 +51,7 @@ export default function AdmissionStudentRecordEdit() {
   // Delete student
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this student?")) 
-      router.push("/admissionstudentrecord");
+      router.push("/admissionstudentrecordedit");
       // return;
 
     try {
@@ -63,7 +63,7 @@ export default function AdmissionStudentRecordEdit() {
       const data = await res.json();
 
       if (!res.ok) throw new Error(data.error || "Failed to delete student");
-
+      router.push("/dashboard");
       setMessage("Student deleted successfully!");
       fetchStudents();
     } catch (error) {
