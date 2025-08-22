@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from 'next/link'
 // import { IAdmission } from "@/types/datatype";
@@ -31,6 +32,7 @@ export default function AdmissionStudentRecordEdit() {
     const [students, setStudents] = useState<IAdmission[]>([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState("");
+      const router = useRouter();
 
   // Fetch students
   const fetchStudents = async () => {
@@ -48,7 +50,9 @@ export default function AdmissionStudentRecordEdit() {
 
   // Delete student
   const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this student?")) return;
+    if (!confirm("Are you sure you want to delete this student?")) 
+      router.push("/admissionstudentrecord");
+      // return;
 
     try {
       const res = await fetch("/api/admissionstudent", {
