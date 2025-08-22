@@ -4,9 +4,9 @@ import { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { IAdmission } from "@/types/datatype";
 
-type PageProps = { params: { id: string };} ; // ✅ fixed
+// type PageProps = { params: { id: string };} ; // ✅ fixed
 
-export default function EditStudentPage( { params }: PageProps) {
+export default function EditStudentPage( { params }: {params :{id:string}}) {
   
     
     const router = useRouter();

@@ -152,7 +152,7 @@ export default function AdmissionForm() {
                                     placeholder="Please enter your last name"
                                     onChange={handleChange} 
                                 />
-                                <p>Name must contain alphabets only </p>
+                                <p>Name must contain alphabets only </  p>
 
                             </div>
                             
