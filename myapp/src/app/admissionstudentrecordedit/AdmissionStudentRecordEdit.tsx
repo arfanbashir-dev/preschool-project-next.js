@@ -55,7 +55,7 @@ export default function AdmissionStudentRecordEdit() {
       // return;
 
     try {
-      const res = await fetch("/api/admissionstudent", {
+      const res = await fetch(`/api/admissionstudent/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
