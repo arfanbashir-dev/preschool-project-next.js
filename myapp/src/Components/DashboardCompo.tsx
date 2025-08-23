@@ -37,7 +37,7 @@ export default function Dashboard(
     
     <div className="flex-between items-start">
       
-      <div className="sidebar w-60 bg-dark  p-4">     
+      <div className="sidebar w-64 bg-dark  p-4">     
 
         <div className='circle w-52 pb-3'>
           
@@ -80,10 +80,10 @@ export default function Dashboard(
           
           
           <button className="link w-56 flex items-center gap-2  border-none" >
-            <Link className="link flex-center gap-2" href="/admissionstudentrecord"><FaGraduationCap/>Admission Students Record</Link>
+            <Link className="link flex-center gap-2" href="/admissionstudentrecord"><FaGraduationCap/>Students Record</Link>
           </button>
           <button className="link w-56 flex items-center gap-2  border-none" >
-            <Link className="link flex-center gap-2" href="/admissionstudentrecord"><FaGraduationCap/>Gradewise Students Record</Link>
+            <Link className="link flex-center gap-2" href="/admissionstudentrecord"><FaGraduationCap/>Gradewise St. Record</Link>
           </button>
           
 
