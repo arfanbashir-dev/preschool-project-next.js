@@ -10,7 +10,7 @@ export default async function RegisterPage() {
   const session = await getServerSession(authOptions);
 
   if (!session || session.user.role !== "admin") {
-    redirect("/loginadmin");
+      redirect("/dashboard");
   }
 
   return (

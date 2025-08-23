@@ -1,31 +1,3 @@
-// import React from 'react';
-// import UserTableAndChart from './UserTableAndChart';
-// import StaffTableAndChart from './StaffTableAndChart';
-// import StudentTableAndChart from './StudentTableAndChart';
-
-// type Student = {  _id: string;  firstname: string;  lastname: string;  date_of_birth: string;
-//   grade: string;  gender: string;  myimg: string;
-// };
-
-// type User = { _id: string; name: string; email: string };
-// type Staff = { _id: string; name: string; position: string };
-
-// export default function DashboardCompo({ 
-//    view,  users,  staff,  students
-// }: { view: string;  users: User[];  staff: Staff[];  students: Student[];
-// }) {
-//   return (
-//     <div>
-//       {view === 'userstableandchart' && <UserTableAndChart users={users} />}
-//       {view === 'stafftableandchart' && <StaffTableAndChart staff={staff} />}
-//       {view === 'studenttableandchart' && (
-//         <StudentTableAndChart students={students} />
-//       )}
-//     </div>
-//   );
-// }
-
-
 
 'use client'
 
@@ -44,8 +16,9 @@ import StudentTableAndChart from './StudentTableAndChart'
 import { 
   FaHome, FaUserPlus,   FaTable, FaGraduationCap,
   FaUserTie,  FaChalkboardTeacher,  FaUserGraduate,  FaUserShield,  FaUserCog,  
-  FaUserFriends,  FaCogs,  FaUser
+  FaUserFriends,  FaCogs,  FaUser, FaSignOutAlt
 } from 'react-icons/fa';
+
 
 
 
@@ -107,7 +80,7 @@ export default function Dashboard(
           
           
           <button className="link w-56 flex items-center gap-2  border-none" >
-            <Link className="link flex-center gap-2" href="/admissionrecord"><FaGraduationCap/>Admission Students Record</Link>
+            <Link className="link flex-center gap-2" href="/admissionstudentrecord"><FaGraduationCap/>Admission Students Record</Link>
           </button>
           <button className="link w-56 flex items-center gap-2  border-none" >
             <Link className="link flex-center gap-2" href="/admissionstudentrecord"><FaGraduationCap/>Gradewise Students Record</Link>
@@ -125,6 +98,10 @@ export default function Dashboard(
 
           <button className="link w-56 flex items-center gap-2  border-none" >
             <Link className="flex items-center gap-2" href="/admissionstudentrecordedit2"><FaGraduationCap /> Edit Students Record 2</Link>
+          </button> 
+
+          <button className="link w-56 flex items-center gap-2  border-none" >
+            <Link className="flex items-center gap-2" href="/signout"><FaSignOutAlt />LogOut</Link>
           </button> 
 
 

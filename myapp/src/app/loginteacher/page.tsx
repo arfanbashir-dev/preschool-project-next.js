@@ -15,13 +15,6 @@ export default function LoginFunc(){
     return(
         <div className="pt-32 ">
                 
-            <div className='flex-center gap-10 bg-medium h-16 '>
-
-                    
-                    <Link href="/registerstudent">Student Registeration Form</Link>          
-                    <Link href="/admissionform">Student Addmission Form</Link>
-
-            </div>
             
             <div className="container-login  h-screen  rounded-lg flex-center py-20 bg-white text-black">
                 
@@ -81,15 +74,7 @@ export default function LoginFunc(){
                         <div>    
                             <p>If you have already registered to any other branch, please use the same login details to access this site.</p>
 
-                        </div>
-
-                        
-
-
-    
-
-    
-        
+                        </div>     
                         
                         
 

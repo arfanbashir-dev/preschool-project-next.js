@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 export default function RegisterUserForm() {
   const router = useRouter();
-  const [form, setForm] = useState({name:'', email: '', password: '', role: 'user' });
+  const [form, setForm] = useState({name:'', email: '', password: '', role: '' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -36,7 +36,7 @@ export default function RegisterUserForm() {
       <h1 className="text-2xl mb-4">Register</h1>
 
       {error && <p className="text-red-500">{error}</p>}
-      {success && <p className="text-green-600">{success}</p>}
+      {success && <p className="text-dark">{success}</p>}
 
       <input        type="text"     className="block w-full mb-2 p-2 border"
         placeholder="name"    value={form.name}       required
@@ -52,16 +52,16 @@ export default function RegisterUserForm() {
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
       <select
-        className="block w-full mb-4 p-2 border"
+        className="block w-full mb-4 p-2 border text-black"
         value={form.role}
         onChange={(e) => setForm({ ...form, role: e.target.value })}
       >
-        <option value="" disabled>Select Role</option>
+        <option className='' value="" disabled>Select Role</option>
         <option value="admin">Admin</option>
         <option value="user">User</option>
       </select>
 
-      <button type="submit" className="bg-green-600 text-white px-4 py-2">
+      <button type="submit" >
         Register
       </button>
     </form>

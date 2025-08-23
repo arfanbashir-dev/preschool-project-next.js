@@ -5,7 +5,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
 export default function ContactPage() {
   return (
-      <div className='pt-32 bg-light'>
+      <div className='pt-32 '>
           <div className="max-w-5xl mx-auto px-6 py-10">
               <motion.h1  className="text-4xl font-bold text-dark mb-8 text-center"    
                 initial={{ opacity: 0, y: -100 }}
@@ -62,7 +62,7 @@ export default function ContactPage() {
 
         {/* Contact Form */}
         <motion.form
-          className="space-y-4 bg-blue-50 p-6 rounded-xl shadow-sm"
+          className="space-y-4 bg-dark p-6 rounded-xl shadow-sm"
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
