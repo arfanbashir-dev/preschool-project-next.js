@@ -25,7 +25,7 @@ export default function ApplyFunc() {
         
         <div className="flex-center p-10">
             <div>
-                <video   loop playsInline  className=" w-full   rounded-lg ">
+                <video   loop autoPlay playsInline  className=" w-full   rounded-lg ">
                     <source  src='/video/video1.mp4' type="video/mp4" />
                 </video>
             </div>

@@ -7,7 +7,7 @@ export default function HomeVideoPage() {
     <div className='pt-32 pb-10'>
     <div className="relative w-full h-screen overflow-hidden opacity-80   ">
       
-        <video   loop   muted    playsInline
+        <video   loop   muted  autoPlay  playsInline
           className="absolute top-0 left-0 w-full  object-cover">
           <source src='/video/video2.mp4' type="video/mp4" />
         
