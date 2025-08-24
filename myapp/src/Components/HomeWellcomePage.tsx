@@ -2,9 +2,7 @@
 import Image from "next/image"
 
 import Img3 from '../../public/Photoes/pic3.jpg'
-// import ApplyForm from "@/Components/ApplyForm"
 
-// export default function WellComePage(){
 const HomeWellComePage = () => {
 
     return(

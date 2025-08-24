@@ -3,21 +3,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import LogoImg from '../../public/logopreschool.png';
-// import { useState } from 'react';
+
 import { IoSearch } from "react-icons/io5";
 import { useSession } from "next-auth/react";
-// import { useRouter } from 'next/navigation';
+
 import {navObj} from '@/Constants/NavObj';
 import { FaCaretDown } from "react-icons/fa";
 
 export default function Navbar() {
 
   const { data: session } = useSession();
-  // const [menuOpen, setMenuOpen] = useState(false);
-  // const router = useRouter();
-
-  // const handleLogout = () => { router.push('/signout');  };
-
+  
   
   return (
   

@@ -5,7 +5,7 @@ import { Chart as ChartJS,  BarElement,  CategoryScale,  LinearScale,  Tooltip, 
 import { IUser } from '@/types/datatype'; 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-// type User = { _id: string; name: string; email: string; role: string };
+
 
 export default function UserTableAndChart({ users }: { users: IUser[] }) {
   
@@ -69,41 +69,3 @@ export default function UserTableAndChart({ users }: { users: IUser[] }) {
 
 
 
-// 'use client';
-
-// import { Pie } from 'react-chartjs-2';
-// import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-// import React from 'react';
-
-// ChartJS.register(ArcElement, Tooltip, Legend);
-
-// type User = {
-//   name: string;
-//   email: string;
-//   role: string;
-// };
-
-// export default function UserRoleChart({ users }: { users: User[] }) {
-//   const roleCounts: Record<string, number> = {};
-//   users.forEach((user) => {
-//     roleCounts[user.role] = (roleCounts[user.role] || 0) + 1;
-//   });
-
-//   const chartData = {
-//     labels: Object.keys(roleCounts),
-//     datasets: [
-//       {
-//         label: 'Users by Role',
-//         data: Object.values(roleCounts),
-//         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-//       },
-//     ],
-//   };
-
-//   return (
-//     <div className="w-full md:w-1/2 mx-auto mb-8">
-//       <h2 className="text-xl font-semibold text-center mb-4">User Role Distribution</h2>
-//       <Pie data={chartData} />
-//     </div>
-//   );
-// }

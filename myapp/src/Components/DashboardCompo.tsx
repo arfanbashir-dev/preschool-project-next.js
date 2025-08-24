@@ -15,9 +15,10 @@ import StudentTableAndChart from './StudentTableAndChart'
 import { 
   FaHome, FaUserPlus,   FaTable, FaGraduationCap,
   FaUserTie,  FaChalkboardTeacher,  FaUserGraduate,  FaUserShield,  FaUserCog,  
-  FaUserFriends,  FaCogs,  FaUser, FaSignOutAlt
+  FaUserFriends,  FaUser, FaSignOutAlt,
+  
 } from 'react-icons/fa';
-
+import { GiTeacher } from "react-icons/gi";
 
 
 type View = 'dashboard' | 'userstableandchart'|'stafftableandchart'|'studenttableandchart'
@@ -106,14 +107,14 @@ export default function Dashboard(
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               <Card icon={<FaUserFriends />} title="Users" value={users.length.toString()} />
               <Card icon={<FaUserTie />} title="Principal" value="1" />              
-              <Card icon={<FaUserCog />} title="Staff" value={staff.length.toString()} />              
+              <Card icon={<FaUser />} title="Staff" value={staff.length.toString()} />              
               <Card icon={<FaUserShield />} title="Teachers Head" value="10" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               <Card icon={<FaChalkboardTeacher />} title="Senior Teachers" value="50" />
-              <Card icon={<FaUser />} title="Teacher" value='100' />              
+              <Card icon={<GiTeacher />} title="Teacher" value='100' />              
               <Card icon={<FaUserGraduate />} title="Students" value={students.length.toString()} />
-              <Card icon={<FaCogs />} title="Settings" value="10" />
+              <Card icon={<FaUserCog />} title="Settings" value="10" />
             </div>
           </>      
         
