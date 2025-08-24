@@ -1,4 +1,3 @@
-
 'use client'
 
 import React, { useState } from 'react'
@@ -18,8 +17,6 @@ import {
   FaUserTie,  FaChalkboardTeacher,  FaUserGraduate,  FaUserShield,  FaUserCog,  
   FaUserFriends,  FaCogs,  FaUser, FaSignOutAlt
 } from 'react-icons/fa';
-
-
 
 
 
@@ -67,7 +64,7 @@ export default function Dashboard(
           </button>
 
           <button className="link w-56 flex items-center gap-2  border-none" >
-            <Link className="link flex-center gap-2" href="/rolewisestaffview"><FaUserGraduate/>Rolewise Staff View</Link>
+            <Link className="link flex-center gap-2" href="/rolewisestaffrecord"><FaUserGraduate/>Rolewise Staff View</Link>
           </button>
 
           <button className="link w-56 flex items-center gap-2  border-none" >
@@ -82,9 +79,7 @@ export default function Dashboard(
           <button className="link w-56 flex items-center gap-2  border-none" >
             <Link className="link flex-center gap-2" href="/admissionstudentrecord"><FaGraduationCap/>Students Record</Link>
           </button>
-          <button className="link w-56 flex items-center gap-2  border-none" >
-            <Link className="link flex-center gap-2" href="/admissionstudentrecord"><FaGraduationCap/>Gradewise St. Record</Link>
-          </button>
+
           
 
           <button className="link w-56 flex items-center gap-2  border-none" 
@@ -94,11 +89,7 @@ export default function Dashboard(
 
           <button className="link w-56 flex items-center gap-2  border-none" >
             <Link className="flex items-center gap-2" href="/admissionstudentrecordedit"><FaGraduationCap /> Edit Students Record</Link>
-          </button> 
-
-          <button className="link w-56 flex items-center gap-2  border-none" >
-            <Link className="flex items-center gap-2" href="/admissionstudentrecordedit2"><FaGraduationCap /> Edit Students Record 2</Link>
-          </button> 
+          </button>          
 
           <button className="link w-56 flex items-center gap-2  border-none" >
             <Link className="flex items-center gap-2" href="/signout"><FaSignOutAlt />LogOut</Link>

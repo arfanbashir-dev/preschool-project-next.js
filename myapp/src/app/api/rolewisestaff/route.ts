@@ -1,9 +1,8 @@
-// app/api/rolewisestaff/route.ts
-import { NextResponse } from 'next/server';   //ok  
+import { NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongoose';
-import getStaffModel from '@/model/staffroleModel';
+import StaffModel from '@/model/staffroleModel';
 
-// Register new staff (POST)
+// POST
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -14,9 +13,7 @@ export async function POST(req: Request) {
     }
 
     await connectDB();
-    const StaffModel = getStaffModel(role);
 
-    // Optional: check for duplicate email
     const existing = await StaffModel.findOne({ email });
     if (existing) {
       return NextResponse.json({ success: false, message: 'Email already exists' }, { status: 409 });
@@ -31,7 +28,7 @@ export async function POST(req: Request) {
   }
 }
 
-// Fetch all staff by role (GET)
+// GET
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -42,8 +39,7 @@ export async function GET(req: Request) {
     }
 
     await connectDB();
-    const StaffModel = getStaffModel(role);
-    const staff = await StaffModel.find();
+    const staff = await StaffModel.find({ role });  // ✅ filter in one collection
 
     return NextResponse.json({ success: true, staff });
   } catch (err) {
@@ -51,3 +47,4 @@ export async function GET(req: Request) {
     return NextResponse.json({ success: false, message: 'Failed to fetch staff' }, { status: 500 });
   }
 }
+

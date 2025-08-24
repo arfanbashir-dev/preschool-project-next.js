@@ -9,7 +9,7 @@ import UserModel from '@/model/User';
 import AdmissionStudentModel  from '@/model/admissionModel';
 import Dashboard from '@/Components/DashboardCompo';
 import MotionWrapper from '@/Components/MotionWrapper';
-import getStaffModel from "@/model/staffroleModel";
+import StaffModel from "@/model/staffroleModel";
 
 
 export default async function DashboardPage() {
@@ -23,32 +23,17 @@ export default async function DashboardPage() {
   await connectDB();
 
   const users = await UserModel.find().lean();
-  // const staff = await getStaffModel.find().lean();
-
-  const roles = ['coordinator', 'teacherhead','teacher']; // Cu
-  const allStaff = [];
   
-  for (const role of roles) {
-    const model = getStaffModel(role);
-    const staff = await model.find().lean();
-    allStaff.push(...staff);
-  }
-  
-  const allstudents = await AdmissionStudentModel.find().lean();
-    // const model = AdmissionStudentModel;
-    // const allstudents = await model.find().lean();
-    
-  
-
+    const staff = await StaffModel.find().lean();
+    const allstudents = await AdmissionStudentModel.find().lean();
 
   return (
     <div className="pt-32">
       <MotionWrapper>
         <Dashboard
           users={JSON.parse(JSON.stringify(users))}
-          staff={JSON.parse(JSON.stringify(allStaff))}
-          students={JSON.parse(JSON.stringify(allstudents))}
-          // students={JSON.parse(JSON.stringify(allStudents))}
+          staff={JSON.parse(JSON.stringify(staff))}
+          students={JSON.parse(JSON.stringify(allstudents))}          
         />
       </MotionWrapper>
     </div>

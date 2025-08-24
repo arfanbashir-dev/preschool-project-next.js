@@ -59,7 +59,7 @@ export default function AdmissionForm() {
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     
       const file = e.target.files?.[0];
-      if(file){
+        if(file){
             const reader = new FileReader();
             reader.onloadend = () => {
                 const base64 = reader.result as string;
@@ -69,11 +69,6 @@ export default function AdmissionForm() {
             reader.readAsDataURL(file);
         }    
     }
-
-    
-     
-  
-
     
 
     return( 
@@ -113,7 +108,7 @@ export default function AdmissionForm() {
                                     {imagePreview ? (
                                     
                                     <Image  className="object-contain rounded"
-                                        src={imagePreview}  alt="Preview"  width={100}  height={100}  />
+                                        src={imagePreview}  alt="Preview"  width={150}  height={150}  />
 
                                     ) : ( <p className="text-sm text-gray-600">No image selected</p>
                                     )}

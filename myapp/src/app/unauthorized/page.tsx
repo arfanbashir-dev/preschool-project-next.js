@@ -11,8 +11,8 @@ export default function UnauthorizedPage() {
       </div>
       <div className='flex-center gap-10 '>
         <Link href='/'>Home</Link>
-        <Link href='/login'>Login</Link>
-        <Link href="/dashboard" className="p-4 bg-gray-500 hover:bg-gray-900 rounded shadow">
+        <Link href='/loginadmin'>Login</Link>
+        <Link href="/dashboard" className="p-4 bg-light hover:bg-dark rounded shadow">
                Go to Main Dashboard
         </Link>
 

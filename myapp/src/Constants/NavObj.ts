@@ -47,7 +47,7 @@ export const navObj:NavItem[] = [
     id: '6', title:'CONTACT', href: '/contact'
   },
   {
-    id: '7', title: 'Log In', href: '',
+    id: '7', title: 'LogIn', href: '',
     submenu: [
       { title: 'Admin LogIn', href: '/loginadmin' },      
       { title: 'Principal LogIn', href: '/loginprincipal' },
